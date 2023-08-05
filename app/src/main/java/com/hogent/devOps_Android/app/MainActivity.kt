@@ -12,18 +12,17 @@ import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
+import com.auth0.android.Auth0
 import com.hogent.devOps_Android.R
 import com.hogent.devOps_Android.databinding.ActivityMainBinding
-import com.hogent.devOps_Android.util.AuthenticationManager
-import com.hogent.devOps_Android.util.AuthenticationState
-import timber.log.Timber
 import java.lang.reflect.Field
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var drawerLayout: DrawerLayout
-    private lateinit var menu: Menu;
+    private lateinit var menu: Menu
+    private lateinit var account: Auth0
 
 
 
@@ -39,15 +38,19 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupWithNavController(binding.navView, navController);
         setDrawerOptions();
 
-        AuthenticationManager.getInstance(this.application).authenticationState.observe(this, Observer {
+        /*AuthenticationManager.getInstance(this.application).authenticationState.observe(this, Observer {
             onCreateOptionsMenu(menu)
-        })
+        })*/
+        account = Auth0(
+            "{MhyH2kcfW9oZB5ybh7F5yAAq4EmRtF3u}",
+            "{dev-22b6kt7pbvj6yahl.us.auth0.com}"
+        )
     }
 
 
 
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    /*override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menu?.clear();
         if(AuthenticationManager.getInstance(this.application).loggedIn()){
             menuInflater.inflate(R.menu.navdrawer_menu_logged_in, menu);
@@ -55,7 +58,7 @@ class MainActivity : AppCompatActivity() {
             menuInflater.inflate(R.menu.navdrawer_menu_logged_out, menu)
         }
         return super.onCreateOptionsMenu(menu)
-    }
+    }*/
 
     private fun setDrawerOptions() {
         val field: Field = drawerLayout.javaClass.getDeclaredField("mLeftDragger");
@@ -66,12 +69,12 @@ class MainActivity : AppCompatActivity() {
         drag_size.setInt(dragger, 100);
     }
 
-    fun logOut(item: MenuItem){
+    /*fun logOut(item: MenuItem){
         AuthenticationManager.getInstance(this.application).logOut();
         findNavController(R.id.nav_host_fragment).navigate(R.id.loginFragment);
 
 
-    }
+    }*/
 
     //GEEN navigation methods hier, de logout is enkel omdat deze een functie is en geen fragment.
     // zorg dat je de juiste +id gebruikt om te refereren van u menu naar u navgraph

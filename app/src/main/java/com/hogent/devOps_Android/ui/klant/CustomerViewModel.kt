@@ -11,7 +11,6 @@ import androidx.databinding.ObservableInt
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.hogent.devOps_Android.R
 import com.hogent.devOps_Android.database.daos.CustomerDao

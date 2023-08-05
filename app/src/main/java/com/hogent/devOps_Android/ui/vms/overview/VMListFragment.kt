@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hogent.devOps_Android.R
 import com.hogent.devOps_Android.database.DatabaseImp
 import com.hogent.devOps_Android.databinding.FragmentVmlistBinding
-import com.hogent.devOps_Android.util.AuthenticationManager
+import com.hogent.devOps_Android.ui.login.CredentialsManager
 import com.hogent.devOps_Android.util.closeKeyboardOnTouch
 import timber.log.Timber
 
@@ -38,8 +38,8 @@ class VMListFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.fragment_vmlist, container, false);
         application = requireNotNull(this.activity).application
 
-        val db = DatabaseImp.getInstance(application);
-        val customerId = AuthenticationManager.getInstance(application).klant.value!!.id
+        /*TODO val db = DatabaseImp.getInstance(application);
+        val customerId = CredentialsManager.getAccessToken();
         val viewModelFactory = VMListViewModelFactory(db, customerId);
 
         viewModel = ViewModelProvider(this, viewModelFactory)[(VMListViewModel::class.java)];
@@ -57,7 +57,7 @@ class VMListFragment : Fragment() {
         viewModel.projecten.observe(viewLifecycleOwner, Observer {
             recyclerView.adapter = ProjectListAdapter(it, viewModel.virtualmachine.value, this.context, this.application);
 
-        })
+        })*/
 
 
         return binding.root

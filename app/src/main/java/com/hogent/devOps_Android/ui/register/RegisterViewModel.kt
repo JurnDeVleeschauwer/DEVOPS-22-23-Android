@@ -24,6 +24,7 @@ import timber.log.Timber
 
 class RegisterViewModel (private val repository : RegisterRepository ,application: Application) :
 AndroidViewModel(application), Observable {
+    //TODO naar viewmodel veranderen ???
 
     val klant = MutableLiveData<Customer?>()
     private val viewModelJob = Job()

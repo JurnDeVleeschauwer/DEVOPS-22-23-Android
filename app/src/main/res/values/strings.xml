@@ -47,6 +47,8 @@
     <string name="maak_acc_title"><u>Maak een account aan</u></string>
     <string name="confirmPassword">Herhaal paswoord</string>
     <string name="register_text">Geen account </string>
+    <string name="auth_client_id">MhyH2kcfW9oZB5ybh7F5yAAq4EmRtF3u</string>
+    <string name="auth_domain">dev-22b6kt7pbvj6yahl.us.auth0.com</string>
 
     <!-- VM -->
     <string name="title_vm_aanvraag">Aanvragen virtualmachine</string>

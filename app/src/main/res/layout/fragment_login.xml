@@ -2,14 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="ui.Login.LoginViewModel"
+    tools:context="com.hogent.devOps_Android.ui.login.LoginFragment"
     >
 
-    <data>
-        <variable
-            name="loginViewModel"
-            type="com.hogent.devOps_Android.ui.login.LoginViewModel" />
-    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frameLayout"
@@ -31,51 +26,14 @@
             app:layout_constraintTop_toBottomOf="@+id/hogent_logo"
             app:srcCompat="@drawable/rectangle" />
 
-
-        <EditText
-            android:id="@+id/edit_email"
+        <TextView
+            android:id="@+id/logged_in_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/black"
-            android:ems="10"
-            android:hint="@string/email"
-            android:inputType="textEmailAddress"
-            android:minHeight="48dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:afterTextChanged="@{loginViewModel::setMail}"
-            android:text="@{loginViewModel.mail}"
-            app:layout_constraintBottom_toTopOf="@+id/edit_password"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.905"
-            android:imeOptions="actionNext"
-             />
-
-        <EditText
-            android:id="@+id/edit_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/black"
-            android:ems="10"
-            android:hint="@string/password"
-            android:inputType="textPassword"
-            android:minHeight="48dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:afterTextChanged="@{loginViewModel::setPass}"
-            android:text="@{loginViewModel.pass}"
-            app:layout_constraintBottom_toTopOf="@+id/login_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.928"
-            android:imeOptions="actionDone"
-            />
-        />
+            android:text="Logged in"
+            tools:layout_editor_absoluteX="174dp"
+            tools:layout_editor_absoluteY="406dp"
+            tools:ignore="MissingConstraints" />
 
         <Button
             android:id="@+id/login_button"
@@ -83,14 +41,22 @@
             android:layout_height="60dp"
             android:backgroundTint="@color/chamilo_blue"
             android:text="@string/login"
-            android:onClickListener="@{ () -> loginViewModel.login()}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.484"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:layout_editor_absoluteX="103dp"
+            tools:layout_editor_absoluteY="219dp"
+            tools:ignore="MissingConstraints" />
 
-    <ImageView
+
+        <Button
+            android:id="@+id/logout_button"
+            android:layout_width="205dp"
+            android:layout_height="60dp"
+            android:backgroundTint="@color/chamilo_blue"
+            android:text="@string/logout"
+            tools:layout_editor_absoluteX="103dp"
+            tools:layout_editor_absoluteY="310dp"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
         android:id="@+id/hogent_logo"
         android:layout_width="213dp"
         android:layout_height="116dp"
@@ -119,7 +85,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:onClick="@{() -> loginViewModel.navToRegister()}"
             android:text="@string/registreer"
             android:textColor="@color/light_blue_med"
             app:layout_constraintBottom_toBottomOf="parent"

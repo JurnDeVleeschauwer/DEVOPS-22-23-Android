@@ -1,19 +1,14 @@
 package com.hogent.devOps_Android.ui.vms.overview
 
 import android.app.Application
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.FragmentManager
-import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.hogent.devOps_Android.R
 import com.hogent.devOps_Android.database.entities.VirtualMachine
-import com.hogent.devOps_Android.ui.login.LoginFragmentDirections
-import com.hogent.devOps_Android.util.AuthenticationManager
 import timber.log.Timber
 
 
@@ -57,7 +52,7 @@ class VirtualMachineListAdapter constructor(
             //hier heb je het project en de holder, je kan er dingen op setten
             holder.textView1.text = virtualmachine?.status.toString()
             holder.textView2.text = virtualmachine?.name
-            holder.textView3.text = AuthenticationManager.getInstance(application).klant.value!!.email
+            //TODO holder.textView3.text = virtualmachine?.email
 
             holder.itemView.setOnClickListener {
                 Timber.d(String.format("VM ID :  %s", virtualmachine!!.id.toString()))

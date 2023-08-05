@@ -1,16 +1,10 @@
 package com.hogent.devOps_Android.ui.vms.overview
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.hogent.devOps_Android.database.DatabaseImp
-import com.hogent.devOps_Android.database.daos.ProjectDao
 import com.hogent.devOps_Android.database.entities.*
-import com.hogent.devOps_Android.ui.klant.ContactOne
-import com.hogent.devOps_Android.ui.klant.ContactTwo
-import com.hogent.devOps_Android.ui.klant.EditForm
-import com.hogent.devOps_Android.util.AuthenticationManager
 import timber.log.Timber
 
 
