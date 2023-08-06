@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.hogent.devOps_Android.ui.login.LoginFragment"
-    >
+    xmlns:tools="http://schemas.android.com/tools">
 
-
+    <data>
+        <variable
+            name="loViewModel"
+            type="com.hogent.devOps_Android.ui.login.LoginViewModel"/>
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/background">
@@ -31,18 +32,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Logged in"
-            tools:layout_editor_absoluteX="174dp"
-            tools:layout_editor_absoluteY="406dp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/login_container"
+            app:layout_constraintEnd_toEndOf="@+id/login_container"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="@+id/login_container"
+            app:layout_constraintTop_toBottomOf="@+id/logout_button"
+            app:layout_constraintVertical_bias="0.868"
             tools:ignore="MissingConstraints" />
 
         <Button
             android:id="@+id/login_button"
             android:layout_width="205dp"
             android:layout_height="60dp"
+            android:layout_marginTop="60dp"
             android:backgroundTint="@color/chamilo_blue"
             android:text="@string/login"
-            tools:layout_editor_absoluteX="103dp"
-            tools:layout_editor_absoluteY="219dp"
+            app:layout_constraintEnd_toEndOf="@+id/login_container"
+            app:layout_constraintStart_toStartOf="@+id/login_container"
+            app:layout_constraintTop_toTopOf="@+id/login_container"
             tools:ignore="MissingConstraints" />
 
 
@@ -50,10 +58,12 @@
             android:id="@+id/logout_button"
             android:layout_width="205dp"
             android:layout_height="60dp"
+            android:layout_marginTop="20dp"
             android:backgroundTint="@color/chamilo_blue"
             android:text="@string/logout"
-            tools:layout_editor_absoluteX="103dp"
-            tools:layout_editor_absoluteY="310dp"
+            app:layout_constraintEnd_toEndOf="@+id/login_container"
+            app:layout_constraintStart_toStartOf="@+id/login_container"
+            app:layout_constraintTop_toBottomOf="@+id/login_button"
             tools:ignore="MissingConstraints" />
 
         <ImageView

@@ -51,10 +51,6 @@ class LoginFragment : Fragment() {
 
         application = requireNotNull(this.activity).application
 
-        /*val viewModelFactory = LoginViewModelFactory(application);
-        viewModel = ViewModelProvider(this, viewModelFactory)[LoginViewModel::class.java];*/
-
-        binding.lifecycleOwner = this
 
 
         //OAUTH
@@ -62,6 +58,23 @@ class LoginFragment : Fragment() {
             getString(R.string.auth_client_id),
             getString(R.string.auth_domain)
         )
+
+        val view =  inflater.inflate(R.layout.fragment_login, container, false)
+
+        val button = view.findViewById<Button>(R.id.login_button)
+        button?.setOnClickListener {
+            loginWithBrowser()
+        }
+
+        val logoutbutton = view.findViewById<Button>(R.id.logout_button)
+        logoutbutton?.setOnClickListener {
+            logout()
+        }
+        loggedInText = view.findViewById(R.id.logged_in_textview)
+
+
+       /* binding.lifecycleOwner = this
+
 
 
         binding.loginButton.setOnClickListener {
@@ -76,9 +89,7 @@ class LoginFragment : Fragment() {
             Navigation.createNavigateOnClickListener(R.id.login_to_register)
         }
 
-
-
-        loggedInText = binding.loggedInTextview
+        loggedInText = binding.loggedInTextview*/
 
         checkIfToken()
         setLoggedInText()
