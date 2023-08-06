@@ -22,7 +22,7 @@ class CustomerProfileFragment: Fragment() {
         val binding: FragmentProfielBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_profiel, container, false);
         val application = requireNotNull(this.activity).application
 
-        val customerId : Long = arguments!!.get("customerId") as Long
+        val customerId : String = arguments!!.get("customerId") as String
 
         val db = DatabaseImp.getInstance(application).customerDao;
         val viewModelFactory = CustomerViewModelFactory(customerId, db);

@@ -137,8 +137,16 @@ class LoginFragment : Fragment() {
                     CredentialsManager.saveCredentials(requireContext(), credentials)
                     checkIfToken()
                     setLoggedInText()
+                    navigateToVMLIST()
                 }
             })
+    }
+
+    private fun navigateToVMLIST() {
+        var customerId = CredentialsManager.getAccessToken(requireContext())
+        if (customerId != null){
+            NavHostFragment.findNavController(this).navigate(LoginFragmentDirections.loginToProfile(customerId))
+        }
     }
 
     private fun logout() {

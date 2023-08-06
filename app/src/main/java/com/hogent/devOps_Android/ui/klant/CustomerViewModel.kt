@@ -19,7 +19,7 @@ import com.hogent.devOps_Android.database.entities.ContactDetails2
 import com.hogent.devOps_Android.database.entities.Customer
 import timber.log.Timber
 
-class CustomerViewModel (private val customerId : Long, db: CustomerDao) : ViewModel() {
+class CustomerViewModel (private val customerId : String, db: CustomerDao) : ViewModel() {
 
 
     private val database = db;
@@ -142,6 +142,6 @@ class CustomerViewModel (private val customerId : Long, db: CustomerDao) : ViewM
 
 
     init {
-        _klant.addSource(database.get(customerId), _klant::setValue)
+        //TODO _klant.addSource(database.get(customerId), _klant::setValue)
     }
 }
