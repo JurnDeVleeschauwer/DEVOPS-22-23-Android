@@ -5,6 +5,9 @@ import com.hogent.devOps_Android.database.entities.Connection
 import com.hogent.devOps_Android.domain.User
 import com.hogent.devOps_Android.domain.VirtualMachine
 import com.squareup.moshi.JsonClass
+import com.hogent.devOps_Android.database.entities.HardWare
+import com.hogent.devOps_Android.database.entities.VirtualMachineStatus
+import com.hogent.devOps_Android.database.entities.OperatingSystem
 
 class VmProperty {
     @JsonClass(generateAdapter = true)
@@ -14,12 +17,12 @@ class VmProperty {
     data class NetworkVMDetail(
         val Id: Long,
         val Name: String,
-        val Mode: VirtualMachineMode,
-        val Hardware: Hardware,
-        val OperatingSystem: OperatingSystemEnum,
-        val Contract: Contract,
+        val Mode: VirtualMachineStatus,
+        val Hardware: HardWare,
+        val OperatingSystem: OperatingSystem,
+        val ContractId: Long,
         val BackUp: Backup,
-        public FysiekeServer? FysiekeServer { get; set; }
+        //public FysiekeServer? FysiekeServer { get; set; }
         val VMConnection: Connection,
         val Why: String)
 
