@@ -14,8 +14,8 @@ import com.hogent.devOps_Android.database.entities.*
 import com.hogent.devOps_Android.util.ioThread
 import java.time.LocalDate
 
-@Database(entities = [VirtualMachine::class, Customer::class, Contract::class, Project::class ], version = 11, exportSchema = false)
-@TypeConverters(CourseConverter::class, HardwareConverter::class, BackupConverter::class, ConnectionConverter::class, LocalDateConverter::class /*OperatingSystemConverter::class*/)
+@Database(entities = [VirtualMachineEntitiy::class, UserEntitiy::class, ContractEntitiy::class, ProjectEntitiy::class ], version = 11, exportSchema = false)
+@TypeConverters(HardwareConverter::class, BackupConverter::class, ConnectionConverter::class, LocalDateConverter::class /*OperatingSystemConverter::class*/)
 abstract class DatabaseImp() : RoomDatabase() {
 
     abstract val customerDao: CustomerDao
@@ -38,12 +38,12 @@ abstract class DatabaseImp() : RoomDatabase() {
                 DatabaseImp::class.java,
                 "android-devOps"
             )
-                .addCallback(seedDatabase(context))
+                //.addCallback(seedDatabase(context))
                 .allowMainThreadQueries()
                 .fallbackToDestructiveMigration()
                 .build();
 
-        private fun seedDatabase(context: Context): Callback {
+        /*private fun seedDatabase(context: Context): Callback {
             return object : Callback() {
                 override fun onCreate(db: SupportSQLiteDatabase) {
                     super.onCreate(db)
@@ -279,7 +279,7 @@ abstract class DatabaseImp() : RoomDatabase() {
                     }
                 }
             }
-        }
+        }*/
     }
 }
 

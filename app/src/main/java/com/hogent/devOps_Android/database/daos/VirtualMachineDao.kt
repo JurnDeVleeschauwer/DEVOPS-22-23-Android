@@ -4,25 +4,21 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.hogent.devOps_Android.database.entities.Customer
-import com.hogent.devOps_Android.database.entities.VirtualMachine
+import com.hogent.devOps_Android.database.entities.VirtualMachineEntitiy
 
 @Dao
 interface VirtualMachineDao {
     @Insert
-    fun insert(vm: VirtualMachine)
+    fun insert(vm: VirtualMachineEntitiy)
 
     @Update
-    fun update(vm: VirtualMachine)
+    fun update(vm: VirtualMachineEntitiy)
 
     @Query("SELECT * FROM virtualmachine_table WHERE id = :key")
-    suspend fun get(key: Long): VirtualMachine?
-
-    @Query("SELECT * FROM customer_table WHERE id = :key")
-    fun getKlant(key: Long): Customer
+    suspend fun get(key: Long): VirtualMachineEntitiy?
 
     @Query("SELECT * FROM virtualmachine_table WHERE project_id = :key")
-    fun getByProjectId(key: Long): List<VirtualMachine>?
+    fun getByProjectId(key: Long): List<VirtualMachineEntitiy>?
 
 
 }

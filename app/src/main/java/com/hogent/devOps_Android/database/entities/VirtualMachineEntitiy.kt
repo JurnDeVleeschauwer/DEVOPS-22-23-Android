@@ -1,16 +1,17 @@
 package com.hogent.devOps_Android.database.entities
 import androidx.room.*
+import com.hogent.devOps_Android.domain.VirtualMachine
 import org.json.JSONObject
 import java.time.LocalDate
 
 
 @Entity(tableName = "virtualmachine_table",
     foreignKeys = [ForeignKey(
-        entity = Contract::class,
+        entity = ContractEntitiy::class,
         childColumns = ["contractId"],
         parentColumns = ["id"]
     )])
-data class VirtualMachine(
+data class VirtualMachineEntitiy(
     @PrimaryKey(autoGenerate = true)
     var id : Long = 0L,
     val name : String = "",
@@ -18,7 +19,6 @@ data class VirtualMachine(
     val status : VirtualMachineStatus = VirtualMachineStatus.NONE,
     val operatingSystem: OperatingSystem = OperatingSystem.NONE,
     val hardware: HardWare = HardWare(0,0,0),
-    val project_id : Long = 0L,
     val mode : String = "",
     val contractId : Long = 0L,
     val backup : Backup,
@@ -126,21 +126,24 @@ class ConnectionConverter{
     }
 }
 
-//enum class OperatingSystem(str: String) {
-//    WINDOWS10("Windows 10"),
-//    MACOS("MacOS"),
-//    LINUX("Linux"),
-//}
-//enum class Status(str: String) {
-//    WAITING_APPROVEMENT("Wachten op goedkeuring"),  // No connection || No server
-//    READY("Gereed"),                                // has connection && server
-//    RUNNING("Actief"),
-//    PAUSED("Pauze"),
-//    STOPPED("Gestopt")
-//}
-
 enum class BackupType(str: String) {
     DAGELIJKS("Dagelijks"),  // No connection || No server
     WEKELIJKS("Wekelijks"),                                // has connection && server
     MAANDELIJKS("Maandelijks"),
+}
+
+fun List<VirtualMachineEntitiy>.asDomainModel() : List<VirtualMachine>{
+    return map {
+        VirtualMachine(
+            id = it.id,
+            name = it.name,
+            connection = it.connection,
+            status = it.status,
+            operatingSystem = it.operatingSystem,
+            hardware = it.hardware,
+            mode = it.mode,
+            contractId = it.contractId,
+            backup = it.backup
+        )
+    }
 }

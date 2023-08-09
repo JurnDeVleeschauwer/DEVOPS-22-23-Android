@@ -6,25 +6,22 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.hogent.devOps_Android.database.entities.Customer
+import com.hogent.devOps_Android.database.entities.UserEntitiy
 
 @Dao
 interface CustomerDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(klant: Customer)
+    fun insert(klant: UserEntitiy)
 
     @Update
-    fun update(klant: Customer)
+    fun update(klant: UserEntitiy)
 
-    @Query("SELECT * FROM customer_table WHERE id = :key")
-    fun get(key: Long): LiveData<Customer?>
+    @Query("SELECT * FROM user_table WHERE id = :key")
+    fun get(key: Long): LiveData<UserEntitiy?>
 
-    @Query("SELECT * FROM customer_table where email = (:email) and password = (:password)")
-    fun login(email: String, password: String): Customer?
-
-    @Query("SELECT * FROM customer_table ORDER BY id desc")
-    fun getAllUsers(): LiveData<Array<Customer>>
+    @Query("SELECT * FROM user_table ORDER BY id desc")
+    fun getAllUsers(): LiveData<Array<UserEntitiy>>
     
 }
 

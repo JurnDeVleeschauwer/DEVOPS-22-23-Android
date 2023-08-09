@@ -15,7 +15,11 @@ import com.hogent.devOps_Android.R
 import com.hogent.devOps_Android.database.DatabaseImp
 import com.hogent.devOps_Android.databinding.FragmentVmlistBinding
 import com.hogent.devOps_Android.ui.login.CredentialsManager
+import com.hogent.devOps_Android.network.VmApi
 import com.hogent.devOps_Android.util.closeKeyboardOnTouch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import timber.log.Timber
 
 
@@ -153,4 +157,6 @@ class VMListFragment : Fragment() {
 
 
     }*/
+
+
 }

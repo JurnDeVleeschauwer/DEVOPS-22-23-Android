@@ -5,16 +5,16 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.hogent.devOps_Android.database.entities.Contract
+import com.hogent.devOps_Android.database.entities.ContractEntitiy
 
 @Dao
 interface ContractDao {
     @Insert
-    fun insert(contract: Contract)
+    fun insert(contract: ContractEntitiy)
 
     @Update
-    fun update(contract: Contract)
+    fun update(contract: ContractEntitiy)
 
     @Query("SELECT * FROM contract_table WHERE id = :key")
-    fun get(key: Long): Contract?
+    fun get(key: Long): ContractEntitiy?
 }
