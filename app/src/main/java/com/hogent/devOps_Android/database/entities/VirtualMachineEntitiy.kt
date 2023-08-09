@@ -22,6 +22,7 @@ data class VirtualMachineEntitiy(
     val mode : String = "",
     val contractId : Long = 0L,
     val backup : Backup,
+    val why : String = ""
 
 )
 
@@ -143,7 +144,25 @@ fun List<VirtualMachineEntitiy>.asDomainModel() : List<VirtualMachine>{
             hardware = it.hardware,
             mode = it.mode,
             contractId = it.contractId,
-            backup = it.backup
+            backup = it.backup,
+            why = it.why
+        )
+    }
+}
+
+fun List<VirtualMachineEntitiy>.asDatabaseModel() : List<VirtualMachine> {
+    return map {
+        VirtualMachine(
+            id = it.id,
+            name = it.name,
+            connection = it.connection,
+            status = it.status,
+            operatingSystem = it.operatingSystem,
+            hardware = it.hardware,
+            mode = it.mode,
+            contractId = it.contractId,
+            backup = it.backup,
+            why = it.why
         )
     }
 }

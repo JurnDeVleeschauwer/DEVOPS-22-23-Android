@@ -17,7 +17,8 @@ data class VirtualMachine(
     val hardware: HardWare = HardWare(0,0,0),
     val mode : String = "",
     val contractId : Long = 0L,
-    val backup : Backup
+    val backup : Backup,
+    val why: String = ""
 )
 
 data class Project(

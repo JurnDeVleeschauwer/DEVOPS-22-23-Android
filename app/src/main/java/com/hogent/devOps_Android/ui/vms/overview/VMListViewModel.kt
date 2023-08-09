@@ -1,5 +1,6 @@
 package com.hogent.devOps_Android.ui.vms.overview
 
+import android.app.Application
 import android.net.Network
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,6 +10,7 @@ import com.hogent.devOps_Android.database.DatabaseImp
 import com.hogent.devOps_Android.database.entities.*
 import com.hogent.devOps_Android.network.VmApi
 import com.hogent.devOps_Android.network.VmProperty
+import com.hogent.devOps_Android.repository.VmRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -18,21 +20,21 @@ import retrofit2.Response
 import timber.log.Timber
 
 
-class VMListViewModel(db: DatabaseImp, customer_id: Long) : ViewModel() {
+class VMListViewModel(app: Application, customer_id: Long) : ViewModel() {
 
 
 
-    private val database = getDatabase(application)
-    private val videosRepository = VideosRepository(database)
+    private val database = DatabaseImp.getInstance(app.applicationContext)
+    private val vmRepository = VmRepository(database)
 
 
     init {
         viewModelScope.launch {
-            videosRepository.refreshVideos()
+            vmRepository.refresh(customer_id)
         }
     }
 
-    val playlist = videosRepository.videos
+    val vms = vmRepository.vms
 
 
     /*private val db_projecten = db.projectDao;
@@ -78,7 +80,7 @@ class VMListViewModel(db: DatabaseImp, customer_id: Long) : ViewModel() {
 
 
 
-    private fun getProjectListFromApiByUserId(){
+    /*private fun getProjectListFromApiByUserId(){
         coroutineScope.launch {
             var getPropertiesDeferred = VmApi.retrofitService.getProperties()
             try {
@@ -88,8 +90,7 @@ class VMListViewModel(db: DatabaseImp, customer_id: Long) : ViewModel() {
                 _projecten.value = "Failure: ${e.message}"
             }
         }
-    }
-    }
+    }*/
 
 
 }
