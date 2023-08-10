@@ -1,25 +1,21 @@
 package com.hogent.devOps_Android.database.entities
 import androidx.room.*
-import com.hogent.devOps_Android.database.daos.ProjectDao
 import com.hogent.devOps_Android.database.daos.ProjectVirtualMachineDao
-import com.hogent.devOps_Android.domain.Project
 import com.hogent.devOps_Android.domain.User
-import com.hogent.devOps_Android.domain.VirtualMachine
 import com.hogent.devOps_Android.network.NetworkProject
 import com.hogent.devOps_Android.network.NetworkProjectDetail
-import com.hogent.devOps_Android.network.VmApiService
 
 @Entity(tableName = "project_table",
         foreignKeys = [androidx.room.ForeignKey(
         entity = UserEntitiy::class,
         childColumns = ["userid"],
-        parentColumns = ["id"]
+        parentColumns = ["UserId"]
 )])
 data class ProjectEntitiy(
     @PrimaryKey
-    var id : Long = 0L,
-    val name : String = "",
-    val userid : Long = 0
+    var id: Long = 0L,
+    val name: String = "",
+    val userid: String = 0
 )
 
 

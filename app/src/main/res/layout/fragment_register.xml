@@ -13,7 +13,6 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:onClick="@{() -> registerViewModel.navToLogin()}"
             android:id="@+id/arrow_back_login"
             android:layout_width="28dp"
             android:layout_height="30dp"
@@ -37,36 +36,13 @@
             android:textAlignment="viewStart"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/first_name_text_field"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:inputType="textPersonName"
-            android:backgroundTint="@color/blue_med"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:id="@+id/first_name_text_field"
-            style="@style/Widget.AppCompat.EditText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="80dp"
-            android:hint="@string/firstname"
-            android:minHeight="48dp"
-            android:text="@={registerViewModel.inputFirstName}"
-            android:afterTextChanged="@{registerViewModel::setFirstname}"
-            android:textAlignment="viewStart"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/firstNameText"
-            android:imeOptions="actionNext"
-            android:maxLines="1"/>
+
 
         <TextView
             android:textColor="@color/black"
@@ -82,34 +58,8 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/first_name_text_field" />
+            app:layout_constraintStart_toStartOf="parent"/>
 
-        <EditText
-            android:backgroundTint="@color/blue_med"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:id="@+id/LastNameTextField"
-            style="@style/Widget.AppCompat.EditText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="80dp"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="@string/lastname"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:text="@={registerViewModel.inputLastName}"
-            android:afterTextChanged="@{registerViewModel::setLastname}"
-            android:textAlignment="viewStart"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lastnameText"
-            android:imeOptions="actionNext"/>
 
         <TextView
             android:textColor="@color/black"
@@ -126,33 +76,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/LastNameTextField" />
+ />
 
-        <EditText
-            android:backgroundTint="@color/blue_med"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:id="@+id/emailTextInput"
-            style="@style/Widget.AppCompat.EditText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="80dp"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="@string/email"
-            android:inputType="textEmailAddress"
-            android:minHeight="48dp"
-            android:text="@={registerViewModel.inputEmail}"
-            android:afterTextChanged="@{registerViewModel::setEmail}"
-            android:textAlignment="viewStart"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/EmailText"
-            android:imeOptions="actionNext"/>
+
 
         <TextView
             android:textColor="@color/black"
@@ -169,33 +95,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailTextInput" />
+ />
 
-        <EditText
-            android:backgroundTint="@color/blue_med"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:id="@+id/phoneNumbetInput"
-            style="@style/Widget.AppCompat.EditText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="80dp"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="@string/phonenumberHint"
-            android:inputType="phone"
-            android:minHeight="48dp"
-            android:text="@={registerViewModel.inputPhoneNumber}"
-            android:afterTextChanged="@{registerViewModel::setPhoneNumber}"
-            android:textAlignment="viewStart"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/PhoneNumbetText"
-            android:imeOptions="actionNext"/>
+
 
         <TextView
             android:textColor="@color/black"
@@ -212,33 +114,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phoneNumbetInput" />
+ />
 
-        <EditText
-            android:backgroundTint="@color/blue_med"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:id="@+id/passwordInput"
-            style="@style/Widget.AppCompat.EditText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="80dp"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="@string/passwordHint"
-            android:inputType="textPassword"
-            android:minHeight="48dp"
-            android:text="@={registerViewModel.inputPassword}"
-            android:afterTextChanged="@{registerViewModel::setPassword}"
-            android:textAlignment="viewStart"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordText"
-            android:imeOptions="actionNext"/>
 
         <TextView
             android:textColor="@color/black"
@@ -255,49 +132,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordInput" />
+/>
 
-        <EditText
-            android:backgroundTint="@color/blue_med"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:id="@+id/passwordConfirmInput"
-            style="@style/Widget.AppCompat.EditText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="80dp"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="@string/passwordHint"
-            android:inputType="textPassword"
-            android:minHeight="48dp"
-            android:text="@={registerViewModel.inputConfirmPassword}"
-            android:afterTextChanged="@{registerViewModel::setConfirmPassword}"
-            android:textAlignment="viewStart"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordConfirmText" />
-
-        <Button
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:id="@+id/submitButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="16dp"
-            android:onClick="@{() -> registerViewModel.submitButton()}"
-            android:text="@string/registreer"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordConfirmInput"
-            android:imeOptions="actionDone"/>
 
         <TextView
             android:textColor="@color/black"

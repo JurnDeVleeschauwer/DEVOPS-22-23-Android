@@ -9,17 +9,18 @@ import com.hogent.devOps_Android.network.VmApi
 import com.hogent.devOps_Android.database.entities.asDomainModel
 import com.hogent.devOps_Android.database.entities.asDatabaseModel
 import com.hogent.devOps_Android.network.NetworkProject
+import com.hogent.devOps_Android.network.NetworkUser
 import com.hogent.devOps_Android.network.NetworkVMDetail
 
 
-class VmRepository(private val database: DatabaseImp, customer_id: Long?, vm_id: Long?) {
+class VmRepository(private val database: DatabaseImp, customer_id: String?, vm_id: Long?) {
 
     val projects: List<NetworkProject> =
             database.projectDao.getByCustomerId(customer_id!!)!!.asDomainModel()
     val vm: NetworkVMDetail = database.virtualMachineDao.get(vm_id!!)!!.asDomainModel()
     //val vms: List<NetworkVMDetail> = database.virtualMachineDao.getAll().asDomainModel()
-
-    suspend fun refresh(customer_id: Long) {
+    val user: NetworkUser = database.customerDao.get(customer_id!!)!!.asDomainModel()
+    suspend fun refresh(customer_id: String) {
         withContext(Dispatchers.IO){
             val projects = VmApi.retrofitService.GetIndexOfProjectByIdUser(customer_id).await()
             database.projectDao.insertAll(projects.asDatabaseModel())
@@ -40,6 +41,10 @@ class VmRepository(private val database: DatabaseImp, customer_id: Long?, vm_id:
                     database.virtualMachineDao.insertAll(vmDetail.asDatabaseModel())
                 }
 
+    suspend fun refreshUser(UserId: String) {
+        var userDetail = VmApi.retrofitService.GetIndexOfUserById(UserId).await()
+        database.customerDao.insertAll(userDetail.asDatabaseModel())
+    }
 
 
 }

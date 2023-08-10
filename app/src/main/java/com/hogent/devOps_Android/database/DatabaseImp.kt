@@ -15,8 +15,8 @@ import com.hogent.devOps_Android.database.entities.*
 import com.hogent.devOps_Android.util.ioThread
 import java.time.LocalDate
 
-@Database(entities = [VirtualMachineEntitiy::class, UserEntitiy::class, ContractEntitiy::class, ProjectEntitiy::class ], version = 11, exportSchema = false)
-@TypeConverters(HardwareConverter::class, BackupConverter::class, ConnectionConverter::class, LocalDateConverter::class /*OperatingSystemConverter::class*/)
+@Database(entities = [VirtualMachineEntitiy::class, UserEntitiy::class, ContractEntitiy::class, ProjectEntitiy::class, ProjectVirtualMachineEntity::class ], version = 11, exportSchema = false)
+@TypeConverters(HardwareConverter::class, BackupConverter::class, ConnectionConverter::class, LocalDateConverter::class, User_metadataConverter::class /*OperatingSystemConverter::class*/)
 abstract class DatabaseImp() : RoomDatabase() {
 
     abstract val projectVirtualMachineDao: ProjectVirtualMachineDao

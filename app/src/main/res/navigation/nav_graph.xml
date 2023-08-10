@@ -11,25 +11,9 @@
         android:label="@string/login"
         tools:layout="@layout/fragment_login">
         <action
-            android:id="@+id/login_to_register"
-            app:destination="@id/registerFragment"
-            />
-        <action
             android:id="@+id/login_to_profile"
             app:destination="@+id/profielFragment"
             />
-    </fragment>
-
-    <fragment
-        android:id="@+id/registerFragment"
-        android:name="com.hogent.devOps_Android.ui.register.RegisterFragment"
-        android:label="@string/registreer"
-        tools:layout="@layout/fragment_register" >
-
-        <action
-            android:id="@+id/action_registerFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-
     </fragment>
 
     <fragment

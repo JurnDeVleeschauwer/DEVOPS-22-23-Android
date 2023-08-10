@@ -1,5 +1,6 @@
 package com.hogent.devOps_Android.ui.klant
 
+import android.app.Application
 import android.media.Image
 import android.text.Editable
 import android.view.View
@@ -12,17 +13,29 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.hogent.devOps_Android.R
+import com.hogent.devOps_Android.database.DatabaseImp
 import com.hogent.devOps_Android.database.daos.CustomerDao
-import com.hogent.devOps_Android.database.entities.ContactDetails1
-import com.hogent.devOps_Android.database.entities.ContactDetails2
-import com.hogent.devOps_Android.database.entities.Customer
+import com.hogent.devOps_Android.repository.VmRepository
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class CustomerViewModel (private val customerId : String, db: CustomerDao) : ViewModel() {
+class CustomerViewModel (app: Application, UserId : String) : ViewModel() {
+
+    private val database = DatabaseImp.getInstance(app.applicationContext)
+    private val vmRepository = VmRepository(database, null, null)
 
 
-    private val database = db;
+    init {
+        viewModelScope.launch {
+            vmRepository.refreshUser(UserId)
+        }
+    }
+
+    val user = vmRepository.user
+
+    /*private val database = db;
 
     private val _form = MutableLiveData( EditForm(ContactOne("", "", ""), ContactTwo("", "", "")))
     private val _klant = MediatorLiveData<Customer>()
@@ -143,5 +156,5 @@ class CustomerViewModel (private val customerId : String, db: CustomerDao) : Vie
 
     init {
         //TODO _klant.addSource(database.get(customerId), _klant::setValue)
-    }
+    }*/
 }

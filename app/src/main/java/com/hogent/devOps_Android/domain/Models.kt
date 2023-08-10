@@ -1,7 +1,5 @@
 package com.hogent.devOps_Android.domain
 
-import androidx.room.PrimaryKey
-import com.hogent.devOps_Android.database.daos.ProjectVirtualMachineDao
 import com.hogent.devOps_Android.database.entities.Backup
 import com.hogent.devOps_Android.database.entities.Connection
 import com.hogent.devOps_Android.database.entities.HardWare
@@ -30,9 +28,9 @@ data class Project(
     val vms : List<ProjectVirtualMachineEntity>
 )
 
-data class User (
-    var id: Long = 0L,
-    val UserId: Long = 0L
+data class User(
+    var id: String = 0L,
+    val UserId: String = 0L
 )
 
 data class Contract(

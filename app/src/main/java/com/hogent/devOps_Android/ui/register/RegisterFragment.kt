@@ -22,7 +22,7 @@ import com.hogent.devOps_Android.util.closeKeyboardOnTouch
 
 class RegisterFragment : Fragment() {
 
-    private lateinit var viewModel : RegisterViewModel
+    /*private lateinit var viewModel : RegisterViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -62,5 +62,5 @@ class RegisterFragment : Fragment() {
 
 
         return binding.root
-    }
+    }*/
 }

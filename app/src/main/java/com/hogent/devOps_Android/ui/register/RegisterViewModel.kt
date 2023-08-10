@@ -13,7 +13,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.hogent.devOps_Android.database.entities.Customer
 import com.hogent.devOps_Android.database.repositories.RegisterRepository
 import com.hogent.devOps_Android.util.Validators
 import kotlinx.coroutines.CoroutineScope
@@ -25,7 +24,7 @@ import timber.log.Timber
 class RegisterViewModel (private val repository : RegisterRepository ,application: Application) :
 AndroidViewModel(application), Observable {
     //TODO naar viewmodel veranderen ???
-
+    /*
     val klant = MutableLiveData<Customer?>()
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
@@ -130,6 +129,13 @@ AndroidViewModel(application), Observable {
 
     override fun removeOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
 
+    }*/
+    override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun removeOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
+        TODO("Not yet implemented")
     }
 
 }

@@ -1,12 +1,9 @@
 package com.hogent.devOps_Android.network
 
-import com.hogent.devOps_Android.domain.Project
-import com.hogent.devOps_Android.domain.VirtualMachine
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Deferred
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -23,7 +20,7 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL).build()
 interface VmApiService {
     @GET("project/User")
-    fun GetIndexOfProjectByIdUser(customer_id: Long):
+    fun GetIndexOfProjectByIdUser(customer_id: String):
             Deferred<List<NetworkProject>>
 
     @GET("project/Detail")
@@ -33,6 +30,10 @@ interface VmApiService {
     @GET("virtualmachine/")
     fun GetIndexOfVmById(vm_id: Long):
             Deferred<NetworkVMDetail>
+
+    @GET("User/")
+    fun GetIndexOfUserById(UserId: String):
+            Deferred<NetworkUser>
 }
 
 object VmApi {
