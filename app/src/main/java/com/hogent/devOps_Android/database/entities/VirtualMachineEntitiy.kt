@@ -1,6 +1,7 @@
 package com.hogent.devOps_Android.database.entities
 import androidx.room.*
 import com.hogent.devOps_Android.domain.VirtualMachine
+import com.hogent.devOps_Android.network.NetworkVMDetail
 import org.json.JSONObject
 import java.time.LocalDate
 
@@ -12,7 +13,7 @@ import java.time.LocalDate
         parentColumns = ["id"]
     )])
 data class VirtualMachineEntitiy(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     var id : Long = 0L,
     val name : String = "",
     val connection : Connection,
@@ -133,36 +134,64 @@ enum class BackupType(str: String) {
     MAANDELIJKS("Maandelijks"),
 }
 
-fun List<VirtualMachineEntitiy>.asDomainModel() : List<VirtualMachine>{
+fun List<VirtualMachineEntitiy>.asDomainModel() : List<NetworkVMDetail>{
     return map {
-        VirtualMachine(
-            id = it.id,
-            name = it.name,
-            connection = it.connection,
-            status = it.status,
-            operatingSystem = it.operatingSystem,
-            hardware = it.hardware,
-            mode = it.mode,
-            contractId = it.contractId,
-            backup = it.backup,
-            why = it.why
+        NetworkVMDetail(
+            Id = it.id,
+            Name = it.name,
+            VMConnection = it.connection,
+            OperatingSystem = it.operatingSystem,
+            Hardware = it.hardware,
+            Mode = it.status,
+            ContractId = it.contractId,
+            BackUp = it.backup,
+            Why = it.why
         )
     }
 }
 
-fun List<VirtualMachineEntitiy>.asDatabaseModel() : List<VirtualMachine> {
+fun List<NetworkVMDetail>.asDatabaseModel() : List<VirtualMachineEntitiy> {
     return map {
-        VirtualMachine(
-            id = it.id,
-            name = it.name,
-            connection = it.connection,
-            status = it.status,
-            operatingSystem = it.operatingSystem,
-            hardware = it.hardware,
-            mode = it.mode,
-            contractId = it.contractId,
-            backup = it.backup,
-            why = it.why
+        VirtualMachineEntitiy(
+            id = it.Id,
+            name = it.Name,
+            connection = it.VMConnection,
+            operatingSystem = it.OperatingSystem,
+            hardware = it.Hardware,
+            status = it.Mode,
+            contractId = it.ContractId,
+            backup = it.BackUp,
+            why = it.Why
         )
     }
+}
+
+fun VirtualMachineEntitiy.asDomainModel() : NetworkVMDetail{
+    return NetworkVMDetail(
+            Id = id,
+            Name = name,
+            VMConnection = connection,
+            OperatingSystem = operatingSystem,
+            Hardware = hardware,
+            Mode = status,
+            ContractId = contractId,
+            BackUp = backup,
+            Why = why
+        )
+
+}
+
+fun NetworkVMDetail.asDatabaseModel() : VirtualMachineEntitiy {
+    return VirtualMachineEntitiy(
+            id = Id,
+            name = Name,
+            connection = VMConnection,
+            operatingSystem = OperatingSystem,
+            hardware = Hardware,
+            status = Mode,
+            contractId = ContractId,
+            backup = BackUp,
+            why = Why
+        )
+
 }

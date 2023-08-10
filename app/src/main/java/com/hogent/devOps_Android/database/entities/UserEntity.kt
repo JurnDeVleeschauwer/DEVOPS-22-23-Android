@@ -7,7 +7,7 @@ import com.hogent.devOps_Android.domain.User
 
 @Entity(tableName = "user_table")
 data class UserEntitiy (
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     var id: Long = 0L,
     val UserId: Long = 0L
 )
@@ -16,6 +16,15 @@ data class UserEntitiy (
 fun List<UserEntitiy>.asDomainModel() : List<User>{
     return map {
         User(
+            id = it.id,
+            UserId = it.UserId
+        )
+    }
+}
+
+fun List<User>.asDatabaseModel() : List<UserEntitiy>{
+    return map {
+        UserEntitiy(
             id = it.id,
             UserId = it.UserId
         )

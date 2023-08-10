@@ -9,6 +9,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.hogent.devOps_Android.database.daos.ContractDao
 import com.hogent.devOps_Android.database.daos.CustomerDao
 import com.hogent.devOps_Android.database.daos.ProjectDao
+import com.hogent.devOps_Android.database.daos.ProjectVirtualMachineDao
 import com.hogent.devOps_Android.database.daos.VirtualMachineDao
 import com.hogent.devOps_Android.database.entities.*
 import com.hogent.devOps_Android.util.ioThread
@@ -18,6 +19,7 @@ import java.time.LocalDate
 @TypeConverters(HardwareConverter::class, BackupConverter::class, ConnectionConverter::class, LocalDateConverter::class /*OperatingSystemConverter::class*/)
 abstract class DatabaseImp() : RoomDatabase() {
 
+    abstract val projectVirtualMachineDao: ProjectVirtualMachineDao
     abstract val customerDao: CustomerDao
     abstract val virtualMachineDao: VirtualMachineDao
     abstract val projectDao : ProjectDao

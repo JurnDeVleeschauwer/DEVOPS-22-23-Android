@@ -1,5 +1,6 @@
 package com.hogent.devOps_Android.network
 
+import com.hogent.devOps_Android.database.daos.ProjectVirtualMachineDao
 import com.hogent.devOps_Android.database.entities.Backup
 import com.hogent.devOps_Android.database.entities.Connection
 import com.hogent.devOps_Android.domain.User
@@ -8,9 +9,9 @@ import com.squareup.moshi.JsonClass
 import com.hogent.devOps_Android.database.entities.HardWare
 import com.hogent.devOps_Android.database.entities.VirtualMachineStatus
 import com.hogent.devOps_Android.database.entities.OperatingSystem
+import com.hogent.devOps_Android.database.entities.ProjectVirtualMachineEntity
 
-class VmProperty {
-    @JsonClass(generateAdapter = true)
+@JsonClass(generateAdapter = true)
     data class NetworkVMContainer(val videos: List<NetworkVMDetail>)
 
     @JsonClass(generateAdapter = true)
@@ -35,7 +36,7 @@ class VmProperty {
     data class NetworkProject(
         val Id: Long,
         val Name: String,
-        val user: User)
+        val User: User)
 
 
     @JsonClass(generateAdapter = true)
@@ -43,7 +44,8 @@ class VmProperty {
 
     @JsonClass(generateAdapter = true)
     data class NetworkProjectDetail(
-        val VirtualMachines: List<VirtualMachine>,
-        val Users: List<User>)
+        val Id: Long,
+        val Name: String,
+        val User: User,
+        val VirtualMachines: List<ProjectVirtualMachineEntity>)
 
-}

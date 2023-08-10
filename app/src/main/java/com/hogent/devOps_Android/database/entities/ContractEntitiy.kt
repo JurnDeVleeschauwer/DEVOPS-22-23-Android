@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter
     parentColumns = ["id"]
 )])
 data class ContractEntitiy(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     var id: Long = 0L,
     var vmid: Long = 0L,
     var startDate: LocalDate,
@@ -42,6 +42,17 @@ class LocalDateConverter{
 fun List<ContractEntitiy>.asDomainModel() : List<Contract>{
     return map {
         Contract(
+            id = it.id,
+            vmid = it.vmid,
+            startDate = it.startDate,
+            endDate = it.endDate
+        )
+    }
+}
+
+fun List<Contract>.asDomainModel() : List<ContractEntitiy>{
+    return map {
+        ContractEntitiy(
             id = it.id,
             vmid = it.vmid,
             startDate = it.startDate,

@@ -5,44 +5,25 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.hogent.devOps_Android.database.DatabaseImp
-import com.hogent.devOps_Android.database.entities.Contract
-import com.hogent.devOps_Android.database.entities.VirtualMachine
+import com.hogent.devOps_Android.repository.VmRepository
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import timber.log.Timber
 
-class VMDetailsViewModel(application: Application, vm_id: Long) : ViewModel() {
+class VMDetailsViewModel(app: Application, vm_id: Long) : ViewModel() {
 
-    var db = DatabaseImp.getInstance(application);
 
-    var vmDao = db.virtualMachineDao
-    var contractDao = db.contractDao
-
-    private val _vm = MutableLiveData<VirtualMachine>();
-    private val _contract = MutableLiveData<Contract>();
-    private val _navBack = MutableLiveData(false);
-
-    val vm : LiveData<VirtualMachine>
-        get() = _vm
-
-    val contract : LiveData<Contract>
-        get() =  _contract
-
-    val navBack : LiveData<Boolean>
-        get() = _navBack
+    private val database = DatabaseImp.getInstance(app.applicationContext)
+    private val vmRepository = VmRepository(database, null, vm_id)
 
 
     init {
-        _vm.value = runBlocking {
-            vmDao.get(vm_id)
-        }
-        if (_vm.value != null) {
-            val contr_id = _vm.value!!.contractId;
-            _contract.postValue(contractDao.get(contr_id))
+        viewModelScope.launch {
+            vmRepository.getvm(vm_id)
         }
     }
 
-    fun navigateBack(){
-        _navBack.postValue(true);
-    }
+    val vm = vmRepository.vm
 }

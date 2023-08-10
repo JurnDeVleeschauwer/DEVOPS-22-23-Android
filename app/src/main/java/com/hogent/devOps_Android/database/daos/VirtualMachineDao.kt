@@ -14,7 +14,7 @@ interface VirtualMachineDao {
     fun insertAll(vararg vms: VirtualMachineEntitiy)
 
     @Query("SELECT * FROM virtualmachine_table WHERE id = :key")
-    suspend fun get(key: Long): VirtualMachineEntitiy?
+    fun get(key: Long): VirtualMachineEntitiy?
 
     @Query("SELECT * FROM virtualmachine_table")
     fun getAll(): List<VirtualMachineEntitiy>
