@@ -15,7 +15,7 @@ data class ProjectEntitiy(
     @PrimaryKey
     var id: Long = 0L,
     val name: String = "",
-    val userid: String = 0
+    val userid: String = ""
 )
 
 
