@@ -50,7 +50,7 @@ fun List<ProjectEntitiy>.asDomainModelDetail(projectVirtualMachineDao: ProjectVi
     }
 }
 
-fun List<NetworkProjectDetail>.asDatabaseModel() : List<ProjectEntitiy>{
+fun List<NetworkProjectDetail>.asDatabaseModelDetail() : List<ProjectEntitiy>{
     return map {
         ProjectEntitiy(
             id = it.Id,

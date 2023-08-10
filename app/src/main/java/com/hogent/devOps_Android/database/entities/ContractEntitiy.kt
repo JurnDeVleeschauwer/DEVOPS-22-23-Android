@@ -1,5 +1,7 @@
 package com.hogent.devOps_Android.database.entities
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
@@ -24,14 +26,17 @@ data class ContractEntitiy(
 )
 
 class LocalDateConverter{
+    @RequiresApi(Build.VERSION_CODES.O)
     private val formatter = DateTimeFormatter.ISO_LOCAL_DATE
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @TypeConverter
     fun fromLocalDate(date: LocalDate): String {
         return date.format(formatter)
 
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     @TypeConverter
     fun toLocalDate(value: String) : LocalDate {
         return value.let { LocalDate.parse(it, formatter) }
@@ -39,24 +44,22 @@ class LocalDateConverter{
 
     }
 }
-fun List<ContractEntitiy>.asDomainModel() : List<Contract>{
-    return map {
-        Contract(
-            id = it.id,
-            vmid = it.vmid,
-            startDate = it.startDate,
-            endDate = it.endDate
+fun ContractEntitiy.asDomainModel() : Contract{
+    return Contract(
+            id = id,
+            vmid = vmid,
+            startDate = startDate,
+            endDate = endDate
         )
-    }
+
 }
 
-fun List<Contract>.asDomainModel() : List<ContractEntitiy>{
-    return map {
-        ContractEntitiy(
-            id = it.id,
-            vmid = it.vmid,
-            startDate = it.startDate,
-            endDate = it.endDate
+fun Contract.asDomainModel() : ContractEntitiy{
+    return ContractEntitiy(
+            id = id,
+            vmid = vmid,
+            startDate = startDate,
+            endDate = endDate
         )
-    }
+
 }

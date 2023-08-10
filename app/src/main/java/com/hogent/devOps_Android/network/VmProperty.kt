@@ -50,6 +50,11 @@ data class NetworkProjectDetail(
     val Name: String,
     val User: User,
     val VirtualMachines: List<ProjectVirtualMachineEntity>)
+
+
+@JsonClass(generateAdapter = true)
+data class NetworkNetworkUserContainer(val videos: List<NetworkUser>)
+
 @JsonClass(generateAdapter = true)
 data class NetworkUser(
     val UserId: String,

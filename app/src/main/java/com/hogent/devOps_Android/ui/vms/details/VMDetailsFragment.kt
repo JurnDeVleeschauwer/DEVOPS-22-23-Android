@@ -33,11 +33,11 @@ class VMDetailsFragment : Fragment() {
         binding.vmViewModel = viewModel
         binding.lifecycleOwner = this;
 
-        viewModel.navBack.observe(viewLifecycleOwner, Observer{
+        /*viewModel.navBack.observe(viewLifecycleOwner, Observer{
             if(it){
                 NavHostFragment.findNavController(this).navigate(VMDetailsFragmentDirections.actionFromDetailToVmlist())
             }
-        })
+        })*/
 
 
 

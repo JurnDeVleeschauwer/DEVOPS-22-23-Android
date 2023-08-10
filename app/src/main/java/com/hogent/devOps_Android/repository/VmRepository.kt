@@ -23,7 +23,7 @@ class VmRepository(private val database: DatabaseImp, customer_id: String?, vm_i
     suspend fun refresh(customer_id: String) {
         withContext(Dispatchers.IO){
             val projects = VmApi.retrofitService.GetIndexOfProjectByIdUser(customer_id).await()
-            database.projectDao.insertAll(projects.asDatabaseModel())
+            projects.asDatabaseModel().map { database.projectDao.insertAll(it) }
 
             for(project in projects){
                 var projectDetail = VmApi.retrofitService.GetIndexOfProjectById(project.Id).await()

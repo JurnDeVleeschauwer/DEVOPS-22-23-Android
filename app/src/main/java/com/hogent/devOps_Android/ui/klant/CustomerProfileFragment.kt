@@ -22,10 +22,10 @@ class CustomerProfileFragment: Fragment() {
         val binding: FragmentProfielBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_profiel, container, false);
         val application = requireNotNull(this.activity).application
 
-        val customerId : String = arguments!!.get("customerId") as String
+        val customerId : String = requireArguments().get("customerId") as String
 
         val db = DatabaseImp.getInstance(application).customerDao;
-        val viewModelFactory = CustomerViewModelFactory(customerId, db);
+        val viewModelFactory = CustomerViewModelFactory(application, customerId);
 
         val customerView = ViewModelProvider(this, viewModelFactory)[(CustomerViewModel::class.java)];
 
@@ -33,7 +33,7 @@ class CustomerProfileFragment: Fragment() {
         binding.lifecycleOwner = this
         binding.root.closeKeyboardOnTouch()
 
-        customerView.success.observe(viewLifecycleOwner, Observer{
+        /*customerView.success.observe(viewLifecycleOwner, Observer{
             if(it){
                 Toast.makeText(requireContext(),"Contactpersoon werd aangepast", Toast.LENGTH_LONG).show()
                 customerView.doneSuccessToast()
@@ -44,7 +44,7 @@ class CustomerProfileFragment: Fragment() {
                 Toast.makeText(requireContext(),customerView.getError(), Toast.LENGTH_LONG).show();
                 customerView.doneErrorToast()
             }
-        })
+        })*/
 
 
         return binding.root

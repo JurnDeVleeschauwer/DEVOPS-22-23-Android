@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.hogent.devOps_Android.R
-import com.hogent.devOps_Android.database.entities.VirtualMachine
+import com.hogent.devOps_Android.domain.VirtualMachine
 import timber.log.Timber
 
 

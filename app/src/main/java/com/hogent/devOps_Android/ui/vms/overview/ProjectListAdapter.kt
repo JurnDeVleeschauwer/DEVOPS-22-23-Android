@@ -9,8 +9,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hogent.devOps_Android.R
-import com.hogent.devOps_Android.database.entities.Project
-import com.hogent.devOps_Android.database.entities.VirtualMachine
+import com.hogent.devOps_Android.domain.Project
+import com.hogent.devOps_Android.domain.VirtualMachine
 import timber.log.Timber
 
 
@@ -69,9 +69,7 @@ class ProjectListAdapter(
         Timber.i("filterVirtualMachines Project ID:")
         Timber.i(projectId.toString())
         virtualmachineList?.forEach { i ->
-            if (i.project_id == projectId) {
                 newvirtualMachineList.add(i)
-            }
         }
         Timber.i("filterVirtualMachines:")
         Timber.i(newvirtualMachineList.toString())

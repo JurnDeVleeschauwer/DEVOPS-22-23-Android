@@ -19,7 +19,7 @@ import retrofit2.Response
 import timber.log.Timber
 
 
-class VMListViewModel(app: Application, customer_id: Long) : ViewModel() {
+class VMListViewModel(app: Application, customer_id: String) : ViewModel() {
 
 
 

@@ -5,8 +5,11 @@ import com.hogent.devOps_Android.database.entities.Connection
 import com.hogent.devOps_Android.database.entities.HardWare
 import com.hogent.devOps_Android.database.entities.OperatingSystem
 import com.hogent.devOps_Android.database.entities.ProjectVirtualMachineEntity
+import com.hogent.devOps_Android.database.entities.Role
+import com.hogent.devOps_Android.database.entities.User_metadata
 import com.hogent.devOps_Android.database.entities.VirtualMachineStatus
 import java.time.LocalDate
+
 
 data class VirtualMachine(
     var id : Long = 0L,
@@ -29,8 +32,12 @@ data class Project(
 )
 
 data class User(
-    var id: String = 0L,
-    val UserId: String = 0L
+    val UserId: String = "",
+    val FirstName: String = "",
+    val Name: String = "",
+    val Email: String = "",
+    val Role: Role = com.hogent.devOps_Android.database.entities.Role.Klant,
+    val user_metadata: User_metadata = User_metadata(null, null, false)
 )
 
 data class Contract(

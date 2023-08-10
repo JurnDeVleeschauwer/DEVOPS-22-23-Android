@@ -1,27 +1,14 @@
 package com.hogent.devOps_Android.ui.klant
 
 import android.app.Application
-import android.media.Image
-import android.text.Editable
-import android.view.View
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.Toast
-import androidx.databinding.ObservableBoolean
-import androidx.databinding.ObservableInt
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hogent.devOps_Android.R
 import com.hogent.devOps_Android.database.DatabaseImp
 import com.hogent.devOps_Android.database.daos.CustomerDao
 import com.hogent.devOps_Android.repository.VmRepository
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
-class CustomerViewModel (app: Application, UserId : String) : ViewModel() {
+class CustomerViewModel(app: Application, UserId: String) : ViewModel() {
 
     private val database = DatabaseImp.getInstance(app.applicationContext)
     private val vmRepository = VmRepository(database, null, null)

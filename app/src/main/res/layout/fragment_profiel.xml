@@ -159,7 +159,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="20dp"
-                        android:text='@{customerViewModel.user.Email}'
+                        android:text='@{user.Email}'
                         android:textAlignment="viewStart"
                         android:textColor="@color/black"
                         android:textSize="@dimen/p_font_size"
@@ -190,67 +190,6 @@
                     android:layout_height="match_parent"
                     android:background="@color/white"
                     android:backgroundTint="@color/white">
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardview_contactdetails"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/buttons_container">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/white"
-                    android:backgroundTint="@color/white">
-
-                    <TextView
-                        android:id="@+id/placeholder_invisible"
-                        android:layout_width="110dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="5dp"
-                        android:textSize="@dimen/p_font_size"
-                        android:visibility="invisible"
-                        app:layout_constraintEnd_toStartOf="@+id/label_contactpersoon_1"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/label_contactpersoon_2"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="20dp"
-                        android:text="@string/contactpersoon2"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/black"
-                        android:textSize="@dimen/p_font_size"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/label_contactpersoon_1"
-                        app:layout_constraintTop_toTopOf="@+id/label_contactpersoon_1" />
-
-                    <TextView
-                        android:id="@+id/label_contactpersoon_1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="5dp"
-                        android:text="@string/contactpersoon1"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/black"
-                        android:textSize="@dimen/p_font_size"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toStartOf="@+id/label_contactpersoon_2"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/placeholder_invisible"
-                        app:layout_constraintTop_toTopOf="@+id/placeholder_invisible" />
-
-
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>

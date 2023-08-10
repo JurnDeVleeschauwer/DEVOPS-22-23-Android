@@ -25,7 +25,6 @@ import com.hogent.devOps_Android.R
 import com.hogent.devOps_Android.database.DatabaseImp
 import com.hogent.devOps_Android.databinding.FragmentLoginBinding
 import com.hogent.devOps_Android.databinding.FragmentVmlistBinding
-import com.hogent.devOps_Android.ui.register.RegisterFragmentDirections
 import com.hogent.devOps_Android.ui.vms.overview.VMListViewModel
 import com.hogent.devOps_Android.util.closeKeyboardOnTouch
 import timber.log.Timber
