@@ -159,7 +159,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="20dp"
-                        android:text='@{user.Email}'
+                        android:text='@{customerViewModel.user.Email}'
                         android:textAlignment="viewStart"
                         android:textColor="@color/black"
                         android:textSize="@dimen/p_font_size"

@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hogent.devOps_Android.database.DatabaseImp
+import com.hogent.devOps_Android.repository.UserRepository
 import com.hogent.devOps_Android.repository.VmRepository
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -16,14 +17,14 @@ class VMDetailsViewModel(app: Application, vm_id: Long) : ViewModel() {
 
 
     private val database = DatabaseImp.getInstance(app.applicationContext)
-    private val vmRepository = VmRepository(database, null, vm_id)
+    private val userRepository = UserRepository(database, vm_id)
 
 
     init {
         viewModelScope.launch {
-            vmRepository.getvm(vm_id)
+            userRepository.getvm(vm_id)
         }
     }
 
-    val vm = vmRepository.vm
+    val vm = userRepository.vm
 }

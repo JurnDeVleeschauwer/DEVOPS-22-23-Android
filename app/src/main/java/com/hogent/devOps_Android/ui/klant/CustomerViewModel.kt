@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 class CustomerViewModel(app: Application, UserId: String) : ViewModel() {
 
     private val database = DatabaseImp.getInstance(app.applicationContext)
-    private val vmRepository = VmRepository(database, null, null)
+    private val vmRepository = VmRepository(database, UserId)
 
 
     init {

@@ -3,6 +3,8 @@ package com.hogent.devOps_Android.repository
 
 import com.hogent.devOps_Android.database.DatabaseImp
 import com.hogent.devOps_Android.database.entities.ProjectVirtualMachineEntity
+import com.hogent.devOps_Android.database.entities.Role
+import com.hogent.devOps_Android.database.entities.User_metadata
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import com.hogent.devOps_Android.network.VmApi
@@ -11,15 +13,16 @@ import com.hogent.devOps_Android.database.entities.asDatabaseModel
 import com.hogent.devOps_Android.network.NetworkProject
 import com.hogent.devOps_Android.network.NetworkUser
 import com.hogent.devOps_Android.network.NetworkVMDetail
+import timber.log.Timber
 
 
-class VmRepository(private val database: DatabaseImp, customer_id: String?, vm_id: Long?) {
+class VmRepository(private val database: DatabaseImp, customer_id: String?) {
 
     val projects: List<NetworkProject> =
             database.projectDao.getByCustomerId(customer_id!!)!!.asDomainModel()
-    val vm: NetworkVMDetail = database.virtualMachineDao.get(vm_id!!)!!.asDomainModel()
+
     //val vms: List<NetworkVMDetail> = database.virtualMachineDao.getAll().asDomainModel()
-    val user: NetworkUser = database.customerDao.get(customer_id!!)!!.asDomainModel()
+    val user: NetworkUser = if(database.customerDao.get(customer_id!!) != null) {database.customerDao.get(customer_id!!).asDomainModel()} else NetworkUser(customer_id!!, "firsttest", "test", "emialtest", Role.Klant, User_metadata(null, null, false) )
     suspend fun refresh(customer_id: String) {
         withContext(Dispatchers.IO){
             val projects = VmApi.retrofitService.GetIndexOfProjectByIdUser(customer_id).await()
@@ -36,14 +39,16 @@ class VmRepository(private val database: DatabaseImp, customer_id: String?, vm_i
             }
         }
     }
-    suspend fun getvm(vm_id: Long) {
-                    var vmDetail = VmApi.retrofitService.GetIndexOfVmById(vm_id).await()
-                    database.virtualMachineDao.insertAll(vmDetail.asDatabaseModel())
-                }
+
 
     suspend fun refreshUser(UserId: String) {
-        var userDetail = VmApi.retrofitService.GetIndexOfUserById(UserId).await()
-        database.customerDao.insertAll(userDetail.asDatabaseModel())
+        withContext(Dispatchers.IO) {
+            var userDetail = VmApi.retrofitService.GetIndexOfUserById(UserId).await()
+            Timber.i("GetUser")
+            Timber.i(userDetail.toString())
+            database.customerDao.insertAll(userDetail.asDatabaseModel())
+            refresh(UserId)
+        }
     }
 
 

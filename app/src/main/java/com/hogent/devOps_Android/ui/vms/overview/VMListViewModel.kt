@@ -24,7 +24,7 @@ class VMListViewModel(app: Application, customer_id: String) : ViewModel() {
 
 
     private val database = DatabaseImp.getInstance(app.applicationContext)
-    private val vmRepository = VmRepository(database, customer_id, null)
+    private val vmRepository = VmRepository(database, customer_id)
 
 
     init {

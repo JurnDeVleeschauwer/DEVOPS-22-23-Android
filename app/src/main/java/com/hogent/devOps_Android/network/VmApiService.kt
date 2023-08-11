@@ -7,6 +7,7 @@ import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 private const val BASE_URL = "https://localhost:44356/api/"
 
@@ -31,8 +32,8 @@ interface VmApiService {
     fun GetIndexOfVmById(vm_id: Long):
             Deferred<NetworkVMDetail>
 
-    @GET("User/")
-    fun GetIndexOfUserById(UserId: String):
+    @GET("User/{id}")
+    fun GetIndexOfUserById( @Path("id") UserId: String):
             Deferred<NetworkUser>
 }
 
