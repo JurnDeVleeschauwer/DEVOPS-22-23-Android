@@ -9,16 +9,17 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-private const val BASE_URL = "https://localhost:44356/api/"
+private const val BASE_URL = "https://10.0.2.2:44356/api/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
 
 private val retrofit = Retrofit.Builder()
-    .addConverterFactory(MoshiConverterFactory.create())
+    .addConverterFactory(MoshiConverterFactory.create(moshi))
     .addCallAdapterFactory(CoroutineCallAdapterFactory())
-    .baseUrl(BASE_URL).build()
+    .baseUrl(BASE_URL)
+    .build()
 interface VmApiService {
     @GET("project/User")
     fun GetIndexOfProjectByIdUser(customer_id: String):

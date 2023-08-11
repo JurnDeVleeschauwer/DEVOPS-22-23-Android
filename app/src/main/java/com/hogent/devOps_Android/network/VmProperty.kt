@@ -12,6 +12,7 @@ import com.hogent.devOps_Android.database.entities.OperatingSystem
 import com.hogent.devOps_Android.database.entities.ProjectVirtualMachineEntity
 import com.hogent.devOps_Android.database.entities.Role
 import com.hogent.devOps_Android.database.entities.User_metadata
+import com.squareup.moshi.Json
 
 @JsonClass(generateAdapter = true)
 data class NetworkVMContainer(val videos: List<NetworkVMDetail>)
@@ -57,10 +58,10 @@ data class NetworkNetworkUserContainer(val videos: List<NetworkUser>)
 
 @JsonClass(generateAdapter = true)
 data class NetworkUser(
-    val UserId: String,
-    val FirstName: String,
-    val Name: String,
-    val Email: String,
-    val Role: Role,
-    val user_metadata: User_metadata
+    @Json(name = "id")val UserId: String,
+    @Json(name = "firstName")val FirstName: String,
+    @Json(name = "name")val Name: String,
+    @Json(name = "email")val Email: String,
+    @Json(name = "role")val Role: Role,
+    @Json(name = "user_metadata")val user_metadata: User_metadata
 )

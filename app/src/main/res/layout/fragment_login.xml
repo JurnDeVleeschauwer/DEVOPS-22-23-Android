@@ -31,7 +31,6 @@
             android:id="@+id/logged_in_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Logged in"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="@+id/login_container"
             app:layout_constraintEnd_toEndOf="@+id/login_container"

@@ -85,7 +85,7 @@ class LoginFragment : Fragment() {
         loggedInText = binding.loggedInTextview*/
 
         checkIfToken()
-        setLoggedInText()
+        //setLoggedInText()
         navigateToVMLIST()
 
         return view
@@ -102,10 +102,10 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun setLoggedInText() {
+    /*private fun setLoggedInText() {
         if(loggedIn) {loggedInText.text = "you're logged in"}
         else {loggedInText.text = "not logged in"}
-    }
+    }*/
 
 
     private fun loginWithBrowser() {
@@ -130,7 +130,7 @@ class LoginFragment : Fragment() {
 
                     CredentialsManager.saveCredentials(requireContext(), credentials)
                     checkIfToken()
-                    setLoggedInText()
+                    //setLoggedInText()
                     navigateToVMLIST()
                 }
             })
@@ -154,7 +154,7 @@ class LoginFragment : Fragment() {
                 override fun onSuccess(payload: Void?) {
                     Toast.makeText(context, "logout OK", Toast.LENGTH_SHORT).show()
                     loggedIn = false
-                    setLoggedInText()
+                    //setLoggedInText()
                 }
 
                 override fun onFailure(error: AuthenticationException) {
@@ -172,7 +172,7 @@ class LoginFragment : Fragment() {
                 override fun onFailure(exception: AuthenticationException) {
                     Timber.i(exception.stackTraceToString())
                     loggedIn = false
-                    setLoggedInText()
+                    //setLoggedInText()
                 }
 
                 override fun onSuccess(profile: UserProfile) {
@@ -182,7 +182,7 @@ class LoginFragment : Fragment() {
                     val email = profile.email
                     val name = profile.name
                     loggedIn = true
-                    setLoggedInText()
+                    //setLoggedInText()
                 }
             })
 
