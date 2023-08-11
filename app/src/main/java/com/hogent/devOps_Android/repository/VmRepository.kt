@@ -43,11 +43,11 @@ class VmRepository(private val database: DatabaseImp, customer_id: String?) {
 
     suspend fun refreshUser(UserId: String) {
         withContext(Dispatchers.IO) {
-            var userDetail = VmApi.retrofitService.GetIndexOfUserById(UserId).await()
             Timber.i("GetUser")
+            var userDetail = VmApi.retrofitService.GetIndexOfUserById(UserId).await()
+
             Timber.i(userDetail.toString())
             database.customerDao.insertAll(userDetail.asDatabaseModel())
-            refresh(UserId)
         }
     }
 

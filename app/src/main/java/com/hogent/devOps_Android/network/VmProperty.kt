@@ -1,10 +1,8 @@
 package com.hogent.devOps_Android.network
 
-import com.hogent.devOps_Android.database.daos.ProjectVirtualMachineDao
 import com.hogent.devOps_Android.database.entities.Backup
 import com.hogent.devOps_Android.database.entities.Connection
 import com.hogent.devOps_Android.domain.User
-import com.hogent.devOps_Android.domain.VirtualMachine
 import com.squareup.moshi.JsonClass
 import com.hogent.devOps_Android.database.entities.HardWare
 import com.hogent.devOps_Android.database.entities.VirtualMachineStatus
@@ -54,14 +52,14 @@ data class NetworkProjectDetail(
 
 
 @JsonClass(generateAdapter = true)
-data class NetworkNetworkUserContainer(val videos: List<NetworkUser>)
+data class NetworkNetworkUserContainer(val user: NetworkUser)
 
 @JsonClass(generateAdapter = true)
 data class NetworkUser(
-    @Json(name = "id")val UserId: String,
-    @Json(name = "firstName")val FirstName: String,
-    @Json(name = "name")val Name: String,
-    @Json(name = "email")val Email: String,
-    @Json(name = "role")val Role: Role,
-    @Json(name = "user_metadata")val user_metadata: User_metadata
+    @Json(name = "id") val UserId: String = "",
+    @Json(name = "firstName") val FirstName: String = "",
+    @Json(name = "name") val Name: String = "",
+    @Json(name = "email") val Email: String = "",
+    @Json(name = "role") val Role: Role = com.hogent.devOps_Android.database.entities.Role.Klant,
+    @Json(name = "user_metadata") val user_metadata: User_metadata = User_metadata(null, null, false)
 )
