@@ -1,5 +1,6 @@
 package com.hogent.devOps_Android.database.daos
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.hogent.devOps_Android.database.entities.ProjectEntitiy
 
@@ -12,7 +13,7 @@ interface ProjectDao {
     fun get(key : Long): ProjectEntitiy
 
     @Query("select * from project_table p where p.userid == :key")
-    fun getByCustomerId(key: String): List<ProjectEntitiy>?
+    fun getByCustomerId(key: String): LiveData<List<ProjectEntitiy>>?
 
 
 

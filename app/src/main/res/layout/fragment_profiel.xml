@@ -125,7 +125,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="20dp"
-                        android:text='@{String.format("%s %s", customerViewModel.user.FirstName, customerViewModel.user.Name)}'
+                        android:text='@{String.format("%s %s", customerViewModel.user.user.FirstName, customerViewModel.user.user.Name)}'
                         android:textAlignment="viewStart"
                         android:textColor="@color/black"
                         android:textSize="@dimen/p_font_size"
@@ -159,7 +159,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="20dp"
-                        android:text='@{customerViewModel.user.Email}'
+                        android:text='@{customerViewModel.user.user.Email}'
                         android:textAlignment="viewStart"
                         android:textColor="@color/black"
                         android:textSize="@dimen/p_font_size"

@@ -1,5 +1,6 @@
 package com.hogent.devOps_Android.database.daos
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -13,7 +14,7 @@ interface CustomerDao {
     fun insertAll(vararg users: UserEntitiy)
 
     @Query("SELECT * FROM user_table WHERE UserId = :key")
-    fun get(key: String): UserEntitiy
+    fun get(key: String): LiveData<UserEntitiy>
 
 
 }

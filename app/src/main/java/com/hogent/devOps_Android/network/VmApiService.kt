@@ -1,5 +1,7 @@
 package com.hogent.devOps_Android.network
 
+import com.hogent.devOps_Android.database.entities.CourseEnumJsonAdapter
+import com.hogent.devOps_Android.database.entities.RoleEnumJsonAdapter
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -22,6 +24,8 @@ private const val BASE_URL = "https://10.0.2.2:44356/api/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
+    .add(RoleEnumJsonAdapter())
+    .add(CourseEnumJsonAdapter())
     .build()
 
 private val retrofit = Retrofit.Builder()
@@ -45,7 +49,7 @@ interface VmApiService {
 
     @GET("User/{id}")
     fun GetIndexOfUserById( @Path("id") UserId: String):
-            Deferred<NetworkUser>
+            Deferred<NetworkNetworkUserContainer>
 }
 
 object VmApi {

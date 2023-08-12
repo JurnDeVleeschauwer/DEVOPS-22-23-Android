@@ -2,6 +2,7 @@ package com.hogent.devOps_Android.network
 
 import com.hogent.devOps_Android.database.entities.Backup
 import com.hogent.devOps_Android.database.entities.Connection
+import com.hogent.devOps_Android.database.entities.Course
 import com.hogent.devOps_Android.domain.User
 import com.squareup.moshi.JsonClass
 import com.hogent.devOps_Android.database.entities.HardWare
@@ -9,7 +10,6 @@ import com.hogent.devOps_Android.database.entities.VirtualMachineStatus
 import com.hogent.devOps_Android.database.entities.OperatingSystem
 import com.hogent.devOps_Android.database.entities.ProjectVirtualMachineEntity
 import com.hogent.devOps_Android.database.entities.Role
-import com.hogent.devOps_Android.database.entities.User_metadata
 import com.squareup.moshi.Json
 
 @JsonClass(generateAdapter = true)
@@ -52,14 +52,22 @@ data class NetworkProjectDetail(
 
 
 @JsonClass(generateAdapter = true)
-data class NetworkNetworkUserContainer(val user: NetworkUser)
+data class NetworkNetworkUserContainer(@Json(name = "user")val user: NetworkUser)
 
 @JsonClass(generateAdapter = true)
 data class NetworkUser(
-    @Json(name = "id") val UserId: String = "",
-    @Json(name = "firstName") val FirstName: String = "",
-    @Json(name = "name") val Name: String = "",
-    @Json(name = "email") val Email: String = "",
-    @Json(name = "role") val Role: Role = com.hogent.devOps_Android.database.entities.Role.Klant,
-    @Json(name = "user_metadata") val user_metadata: User_metadata = User_metadata(null, null, false)
+    @Json(name = "id") val UserId: String,
+    @Json(name = "firstName") val FirstName: String?,
+    @Json(name = "name") val Name: String?,
+    @Json(name = "email") val Email: String,
+    @Json(name = "role") val Role: Role,
+    @Json(name = "user_metadata") val user_metadata: NetworkUser_metadata
 )
+
+@JsonClass(generateAdapter = true)
+data class NetworkUser_metadata(
+    @Json(name = "bedrijf") val Bedrijf: String?,
+    @Json(name = "course") val Course: Course?,
+    @Json(name = "intern") val Intern: Boolean,
+
+    )
