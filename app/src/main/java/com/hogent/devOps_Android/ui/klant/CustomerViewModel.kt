@@ -16,7 +16,7 @@ class CustomerViewModel(app: Application, UserId: String) : ViewModel() {
 
     init {
         viewModelScope.launch {
-            vmRepository.refreshUser(UserId)
+            vmRepository.refreshUser()
         }
     }
 

@@ -18,18 +18,19 @@ import com.hogent.devOps_Android.network.NetworkUser_metadata
 import timber.log.Timber
 
 
-class VmRepository(private val database: DatabaseImp, customer_id: String?) {
+class VmRepository(private val database: DatabaseImp, customer_id: String) {
 
     val projects: LiveData<List<NetworkProject>> =
         database.projectDao.getByCustomerId(customer_id!!)!!.map {
             it.asDomainModel()
-}
+    }
+    var UserId = customer_id
 
     //val vms: List<NetworkVMDetail> = database.virtualMachineDao.getAll().asDomainModel()
     val user: LiveData<NetworkNetworkUserContainer> = database.customerDao.get(customer_id!!).map { it.asDomainModel()}
-    suspend fun refresh(customer_id: String) {
+    suspend fun refresh() {
         withContext(Dispatchers.IO){
-            val projects = VmApi.retrofitService.GetIndexOfProjectByIdUser(customer_id).await()
+            val projects = VmApi.retrofitService.GetIndexOfProjectByIdUser(UserId).await()
             projects.asDatabaseModel().map { database.projectDao.insertAll(it) }
 
             for(project in projects){
@@ -45,7 +46,7 @@ class VmRepository(private val database: DatabaseImp, customer_id: String?) {
     }
 
 
-    suspend fun refreshUser(UserId: String) {
+    suspend fun refreshUser() {
         withContext(Dispatchers.IO) {
             Timber.i("GetUser")
             var userDetail = VmApi.retrofitService.GetIndexOfUserById(UserId).await()

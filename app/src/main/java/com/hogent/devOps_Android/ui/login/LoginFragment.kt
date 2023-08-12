@@ -1,8 +1,11 @@
 package com.hogent.devOps_Android.ui.login
 
+import android.app.Activity
 import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -10,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import com.auth0.android.Auth0
 import com.auth0.android.authentication.AuthenticationAPIClient
@@ -44,6 +48,9 @@ class LoginFragment : Fragment() {
 
         application = requireNotNull(this.activity).application
 
+        CredentialsManager.LoggedIn.observe(this.viewLifecycleOwner, Observer{
+            navigateToVMLIST()
+        })
 
 
         //OAUTH
@@ -147,13 +154,14 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun logout() {
+    public fun logout() {
         WebAuthProvider.logout(account)
             .withScheme("demo")
             .start(requireContext(), object: Callback<Void?, AuthenticationException> {
                 override fun onSuccess(payload: Void?) {
                     Toast.makeText(context, "logout OK", Toast.LENGTH_SHORT).show()
                     loggedIn = false
+                    CredentialsManager.LoggedIn.value = false
                     //setLoggedInText()
                 }
 
@@ -182,6 +190,7 @@ class LoginFragment : Fragment() {
                     val email = profile.email
                     val name = profile.name
                     loggedIn = true
+                    CredentialsManager.LoggedIn.value = true
                     //setLoggedInText()
                 }
             })

@@ -17,11 +17,12 @@
         <item
             android:id="@+id/profielFragment"
             android:icon="@drawable/icons_male_user"
-            android:title="@string/profiel" />
+            android:title="@string/profiel"
+            />
         <item
-            android:id="@+id/logOut"
-            android:icon="@drawable/icons_logout"
-            android:title="@string/logout"
-            android:onClick="logOut"/>
+            android:id="@+id/loginFragment"
+            android:icon="@drawable/icons_login"
+            android:title="@string/login"
+            />
     </group>
 </menu>

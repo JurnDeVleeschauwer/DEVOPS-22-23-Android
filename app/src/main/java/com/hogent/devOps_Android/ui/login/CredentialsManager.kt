@@ -2,6 +2,7 @@ package com.hogent.devOps_Android.ui.login
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.lifecycle.MutableLiveData
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 import com.auth0.android.result.Credentials
@@ -11,7 +12,7 @@ object CredentialsManager {
     private val ACCESS_TOKEN = "access_token"
 
     private lateinit var editor: SharedPreferences.Editor
-
+    var LoggedIn = MutableLiveData(false)
 
     fun saveCredentials(context: Context, credentials: Credentials) {
 

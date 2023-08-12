@@ -29,7 +29,7 @@ class VMListViewModel(app: Application, customer_id: String) : ViewModel() {
 
     init {
         viewModelScope.launch {
-            vmRepository.refresh(customer_id)
+            vmRepository.refresh()
         }
     }
 

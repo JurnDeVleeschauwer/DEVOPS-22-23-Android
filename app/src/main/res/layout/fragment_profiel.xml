@@ -10,189 +10,146 @@
             type="com.hogent.devOps_Android.ui.klant.CustomerViewModel" />
     </data>
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:backgroundTint="@color/white">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/titleKlantDetails"
+            style="?android:attr/listSeparatorTextViewStyle"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="25dp"
+            android:fontFamily="sans-serif"
+            android:text="@string/ttl_klanten_details"
+            android:textColor="@color/black"
+            android:textSize="@dimen/titel_font_size"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/subttl_contactpersonen2"
+            style="?android:attr/listSeparatorTextViewStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:backgroundTint="@color/white">
+            android:layout_marginStart="10dp"
+            android:text="@string/algemene_informatie"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black"
+            android:textSize="@dimen/subtitel_font_size"
 
-            <TextView
-                android:id="@+id/titleKlantDetails"
-                style="?android:attr/listSeparatorTextViewStyle"
-                android:layout_width="0dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="25dp"
-                android:fontFamily="sans-serif"
-                android:text="@string/ttl_klanten_details"
-                android:textColor="@color/black"
-                android:textSize="@dimen/titel_font_size"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/subttl_contactpersonen"
-                style="?android:attr/listSeparatorTextViewStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="30dp"
-                android:text="@string/lbl_contactpersonen"
-                android:textAlignment="viewStart"
-                android:textColor="@color/black"
-                android:textSize="@dimen/subtitel_font_size"
-                android:textStyle="bold"
-
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardview_algemeen" />
-
-            <TextView
-                android:id="@+id/subttl_contactpersonen2"
-                style="?android:attr/listSeparatorTextViewStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="@string/algemene_informatie"
-                android:textAlignment="viewStart"
-                android:textColor="@color/black"
-                android:textSize="@dimen/subtitel_font_size"
-
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titleKlantDetails" />
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleKlantDetails" />
 
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardview_algemeen"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview_algemeen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subttl_contactpersonen2">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/subttl_contactpersonen2">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/white"
-                    android:backgroundTint="@color/white">
+                android:background="@color/white"
+                android:backgroundTint="@color/white">
 
 
-                    <TextView
-                        android:id="@+id/label_course_business"
-                        android:layout_width="130dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:text="@string/lbl_course_business"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/p_font_size"
-                        android:textStyle="bold"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/label_fullname" />
+                <TextView
+                    android:id="@+id/label_course_business"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="@string/lbl_course_business"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/p_font_size"
+                    android:textStyle="bold"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/label_fullname" />
 
-                    <TextView
-                        android:id="@+id/label_fullname"
-                        android:layout_width="130dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="10dp"
-                        android:text="@string/lbl_full_name"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/p_font_size"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toStartOf="@+id/fullname"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/label_fullname"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="@string/lbl_full_name"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/p_font_size"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/fullname"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/fullname"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="20dp"
-                        android:text='@{String.format("%s %s", customerViewModel.user.user.FirstName, customerViewModel.user.user.Name)}'
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/p_font_size"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@+id/label_fullname"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/label_fullname"
-                        app:layout_constraintTop_toTopOf="@+id/label_fullname"
-                        app:layout_constraintVertical_bias="0.0" />
+                <TextView
+                    android:id="@+id/fullname"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:text='@{String.format("%s %s", customerViewModel.user.user.FirstName, customerViewModel.user.user.Name)}'
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/p_font_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/label_fullname"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/label_fullname"
+                    app:layout_constraintTop_toTopOf="@+id/label_fullname"
+                    app:layout_constraintVertical_bias="0.0" />
 
-                    <TextView
-                        android:id="@+id/label_email"
-                        android:layout_width="130dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:text="@string/lbl_email"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/p_font_size"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toStartOf="@+id/emailadress"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/label_course_business" />
+                <TextView
+                    android:id="@+id/label_email"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="@string/lbl_email"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/p_font_size"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/emailadress"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/label_course_business" />
 
-                    <TextView
-                        android:id="@+id/emailadress"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="20dp"
-                        android:text='@{customerViewModel.user.user.Email}'
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/p_font_size"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@+id/label_email"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/label_email"
-                        app:layout_constraintTop_toTopOf="@+id/label_email" />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/emailadress"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:text='@{customerViewModel.user.user.Email}'
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/p_font_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/label_email"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/label_email"
+                    app:layout_constraintTop_toTopOf="@+id/label_email" />
 
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/buttons_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
-                app:cardElevation="0dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/subttl_contactpersonen">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/white"
-                    android:backgroundTint="@color/white">
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
