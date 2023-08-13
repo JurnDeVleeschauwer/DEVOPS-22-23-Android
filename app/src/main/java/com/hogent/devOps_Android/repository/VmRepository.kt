@@ -15,6 +15,7 @@ import com.hogent.devOps_Android.network.NetworkNetworkUserContainer
 import com.hogent.devOps_Android.network.NetworkProject
 import com.hogent.devOps_Android.network.NetworkUser
 import com.hogent.devOps_Android.network.NetworkUser_metadata
+import com.hogent.devOps_Android.network.NetworkVMDetail
 import timber.log.Timber
 
 
@@ -26,7 +27,8 @@ class VmRepository(private val database: DatabaseImp, customer_id: String) {
     }
     var UserId = customer_id
 
-    //val vms: List<NetworkVMDetail> = database.virtualMachineDao.getAll().asDomainModel()
+    val vms: List<NetworkVMDetail> = database.virtualMachineDao.getAll().asDomainModel()
+
     val user: LiveData<NetworkNetworkUserContainer> = database.customerDao.get(customer_id).map { it.asDomainModel()}
     suspend fun refresh() {
         withContext(Dispatchers.IO){

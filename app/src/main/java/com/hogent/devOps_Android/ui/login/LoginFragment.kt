@@ -154,8 +154,10 @@ class LoginFragment : Fragment() {
             //var customerId = CredentialsManager.getAccessToken(requireContext())
             Timber.i(UserId)
             if (UserId != null) {
+                /*NavHostFragment.findNavController(this)
+                    .navigate(LoginFragmentDirections.loginToProfile(UserId))*/
                 NavHostFragment.findNavController(this)
-                    .navigate(LoginFragmentDirections.loginToProfile(UserId))
+                    .navigate(LoginFragmentDirections.actionLoginFragmentToVMListFragment(UserId))
             }
         }
     }

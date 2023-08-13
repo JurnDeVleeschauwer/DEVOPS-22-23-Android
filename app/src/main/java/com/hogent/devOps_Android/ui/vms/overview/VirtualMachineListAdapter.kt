@@ -8,12 +8,12 @@ import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.hogent.devOps_Android.R
-import com.hogent.devOps_Android.domain.VirtualMachine
+import com.hogent.devOps_Android.network.NetworkVMDetail
 import timber.log.Timber
 
 
-class VirtualMachineListAdapter constructor(
-    private var virtualmachineList: List<VirtualMachine>?,
+class VirtualMachineListAdapter(
+    private var virtualmachineList: MutableList<NetworkVMDetail>,
     private var application: Application
 ) : RecyclerView.Adapter<VirtualMachineListAdapter.ViewHolder>() {
 
@@ -50,13 +50,13 @@ class VirtualMachineListAdapter constructor(
             Timber.i("onBindViewHolder:")
             Timber.i(virtualmachine.toString())
             //hier heb je het project en de holder, je kan er dingen op setten
-            holder.textView1.text = virtualmachine?.status.toString()
-            holder.textView2.text = virtualmachine?.name
+            holder.textView1.text = virtualmachine?.Mode.toString()
+            holder.textView2.text = virtualmachine?.Name
             //TODO holder.textView3.text = virtualmachine?.email
 
             holder.itemView.setOnClickListener {
-                Timber.d(String.format("VM ID :  %s", virtualmachine!!.id.toString()))
-                Navigation.findNavController(it).navigate(VMListFragmentDirections.actionFromVmlistToDetail(virtualmachine!!.id))
+                Timber.d(String.format("VM ID :  %s", virtualmachine!!.Id.toString()))
+                Navigation.findNavController(it).navigate(VMListFragmentDirections.actionFromVmlistToDetail(virtualmachine!!.Id))
             }
 
 

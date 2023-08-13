@@ -25,7 +25,7 @@ class CustomerProfileFragment: Fragment() {
 
         val customerId : String = requireArguments().get("customerId") as String
 
-        val db = DatabaseImp.getInstance(application).customerDao;
+
         val viewModelFactory = CustomerViewModelFactory(application, customerId);
 
         val customerView = ViewModelProvider(this, viewModelFactory)[(CustomerViewModel::class.java)];

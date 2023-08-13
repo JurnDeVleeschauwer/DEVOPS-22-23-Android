@@ -11,6 +11,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 import java.security.SecureRandom
 import java.security.cert.X509Certificate
 import javax.net.ssl.SSLContext
@@ -36,15 +37,15 @@ private val retrofit = Retrofit.Builder()
     .build()
 interface VmApiService {
     @GET("project/User")
-    fun GetIndexOfProjectByIdUser(customer_id: String):
+    fun GetIndexOfProjectByIdUser(@Query("UserId")customer_id: String):
             Deferred<List<NetworkProject>>
 
     @GET("project/Detail")
-    fun GetIndexOfProjectById(project_id: Long):
+    fun GetIndexOfProjectById( @Query("ProjectenId") project_id: Long):
             Deferred<NetworkProjectDetail>
 
-    @GET("virtualmachine/")
-    fun GetIndexOfVmById(vm_id: Long):
+    @GET("virtualmachine/{id}")
+    fun GetIndexOfVmById(@Path("id")vm_id: Long):
             Deferred<NetworkVMDetail>
 
     @GET("User/{id}")

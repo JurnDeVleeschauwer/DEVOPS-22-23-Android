@@ -12,14 +12,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hogent.devOps_Android.R
-import com.hogent.devOps_Android.database.DatabaseImp
 import com.hogent.devOps_Android.databinding.FragmentVmlistBinding
-import com.hogent.devOps_Android.ui.login.CredentialsManager
-import com.hogent.devOps_Android.network.VmApi
 import com.hogent.devOps_Android.util.closeKeyboardOnTouch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import timber.log.Timber
 
 
@@ -42,9 +36,8 @@ class VMListFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.fragment_vmlist, container, false);
         application = requireNotNull(this.activity).application
 
-        /*TODO val db = DatabaseImp.getInstance(application);
-        val customerId = CredentialsManager.getAccessToken();
-        val viewModelFactory = VMListViewModelFactory(db, customerId);
+        val customerId : String = requireArguments().get("customerId") as String
+        val viewModelFactory = VMListViewModelFactory(application, customerId);
 
         viewModel = ViewModelProvider(this, viewModelFactory)[(VMListViewModel::class.java)];
 
@@ -56,12 +49,12 @@ class VMListFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(this.context);
 
         Timber.i("VMListFragment:")
-        Timber.i(viewModel.virtualmachine.value.toString())
+        Timber.i(viewModel.projects.value.toString()/*.virtualmachine.value.toString()*/)
 
-        viewModel.projecten.observe(viewLifecycleOwner, Observer {
-            recyclerView.adapter = ProjectListAdapter(it, viewModel.virtualmachine.value, this.context, this.application);
+        viewModel.projects.observe(viewLifecycleOwner, Observer {
+            recyclerView.adapter = ProjectListAdapter(it, viewModel.vms, this.context, this.application);
 
-        })*/
+        })
 
 
         return binding.root

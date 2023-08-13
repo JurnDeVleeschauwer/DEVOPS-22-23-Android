@@ -9,21 +9,21 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hogent.devOps_Android.R
-import com.hogent.devOps_Android.domain.Project
-import com.hogent.devOps_Android.domain.VirtualMachine
+import com.hogent.devOps_Android.network.NetworkProject
+import com.hogent.devOps_Android.network.NetworkVMDetail
 import timber.log.Timber
 
 
 class ProjectListAdapter(
-    private val projectList: List<Project>,
-    private val virtualmachineList: List<VirtualMachine>?,
+    private val projectList: List<NetworkProject>,
+    private val virtualmachineList: List<NetworkVMDetail>,
     private val context: Context?,
     private val application: Application
 ) : RecyclerView.Adapter<ProjectListAdapter.ViewHolder>() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var view: View
-    private var newvirtualMachineList = mutableListOf<VirtualMachine>()
+    private var newvirtualMachineList = mutableListOf<NetworkVMDetail>()
     //hier ontvang je de view, die wordt gecached om te recyclen of opnieuw terug te zien
     //ideaal dus, want als je de project wilt openklappen en sluiten dan weet hij dit
 
@@ -50,13 +50,13 @@ class ProjectListAdapter(
         recyclerView.layoutManager = LinearLayoutManager(context);
         Timber.i("ProjectAdapter:")
         Timber.i(virtualmachineList.toString())
-        filterVirtualMachines(project.id)
+        filterVirtualMachines(project.Id)
         recyclerView.adapter =
             VirtualMachineListAdapter(newvirtualMachineList, this.application)
 
 
         //hier heb je het project en de holder, je kan er dingen op setten
-        holder.textView1.text = project.name
+        holder.textView1.text = project.Name
     }
 
     override fun getItemCount(): Int {

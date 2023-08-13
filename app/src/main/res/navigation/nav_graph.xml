@@ -63,6 +63,9 @@
             app:destination="@+id/detailsFragment">
 
         </action>
+        <argument
+            android:name="customerId"
+            app:argType="string" />
 
 
     </fragment>
