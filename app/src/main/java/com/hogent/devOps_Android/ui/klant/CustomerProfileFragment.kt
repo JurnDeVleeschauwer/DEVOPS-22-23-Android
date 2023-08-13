@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.ui.NavigationUI
 import androidx.room.Database
 import com.hogent.devOps_Android.R
 import com.hogent.devOps_Android.database.DatabaseImp
@@ -32,6 +33,7 @@ class CustomerProfileFragment: Fragment() {
         binding.customerViewModel = customerView
         binding.lifecycleOwner = this
         binding.root.closeKeyboardOnTouch()
+
 
         /*customerView.success.observe(viewLifecycleOwner, Observer{
             if(it){

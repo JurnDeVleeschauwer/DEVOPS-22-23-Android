@@ -19,10 +19,5 @@
             android:icon="@drawable/icons_male_user"
             android:title="@string/profiel"
             />
-        <item
-            android:id="@+id/loginFragment"
-            android:icon="@drawable/icons_login"
-            android:title="@string/login"
-            />
     </group>
 </menu>

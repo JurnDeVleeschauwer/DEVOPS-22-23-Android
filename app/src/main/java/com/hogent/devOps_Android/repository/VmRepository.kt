@@ -21,13 +21,13 @@ import timber.log.Timber
 class VmRepository(private val database: DatabaseImp, customer_id: String) {
 
     val projects: LiveData<List<NetworkProject>> =
-        database.projectDao.getByCustomerId(customer_id!!)!!.map {
+        database.projectDao.getByCustomerId(customer_id)!!.map {
             it.asDomainModel()
     }
     var UserId = customer_id
 
     //val vms: List<NetworkVMDetail> = database.virtualMachineDao.getAll().asDomainModel()
-    val user: LiveData<NetworkNetworkUserContainer> = database.customerDao.get(customer_id!!).map { it.asDomainModel()}
+    val user: LiveData<NetworkNetworkUserContainer> = database.customerDao.get(customer_id).map { it.asDomainModel()}
     suspend fun refresh() {
         withContext(Dispatchers.IO){
             val projects = VmApi.retrofitService.GetIndexOfProjectByIdUser(UserId).await()

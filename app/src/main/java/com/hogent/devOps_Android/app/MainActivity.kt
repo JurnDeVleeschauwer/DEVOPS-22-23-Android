@@ -2,12 +2,10 @@ package com.hogent.devOps_Android.app
 
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.customview.widget.ViewDragHelper
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -16,7 +14,6 @@ import com.auth0.android.Auth0
 import com.hogent.devOps_Android.R
 import com.hogent.devOps_Android.databinding.ActivityMainBinding
 import com.hogent.devOps_Android.ui.login.CredentialsManager
-import com.hogent.devOps_Android.ui.login.LoginFragment
 import java.lang.reflect.Field
 
 class MainActivity : AppCompatActivity() {
@@ -53,14 +50,15 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menu?.clear();
+        menu?.clear()
         if(CredentialsManager.LoggedIn.value!!){
-            menuInflater.inflate(R.menu.navdrawer_menu_logged_in, menu);
+            menuInflater.inflate(R.menu.navdrawer_menu_logged_in, menu)
         }else {
             menuInflater.inflate(R.menu.navdrawer_menu_logged_out, menu)
         }
         return super.onCreateOptionsMenu(menu)
     }
+
 
     private fun setDrawerOptions() {
         val field: Field = drawerLayout.javaClass.getDeclaredField("mLeftDragger");
@@ -70,9 +68,6 @@ class MainActivity : AppCompatActivity() {
         drag_size.isAccessible = true;
         drag_size.setInt(dragger, 100);
     }
-    //GEEN navigation methods hier, de logout is enkel omdat deze een functie is en geen fragment.
-    // zorg dat je de juiste +id gebruikt om te refereren van u menu naar u navgraph
-    // niet : +id\all_vms_fragment  en   +id\vmListFragment
 
 }
 

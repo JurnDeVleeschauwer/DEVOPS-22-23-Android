@@ -6,15 +6,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import com.auth0.android.Auth0
 import com.auth0.android.authentication.AuthenticationAPIClient
 import com.auth0.android.authentication.AuthenticationException
@@ -23,6 +27,7 @@ import com.auth0.android.provider.WebAuthProvider
 import com.auth0.android.result.Credentials
 import com.auth0.android.result.UserProfile
 import com.hogent.devOps_Android.R
+import com.hogent.devOps_Android.app.MainActivity
 import com.hogent.devOps_Android.databinding.FragmentLoginBinding
 import timber.log.Timber
 
@@ -45,12 +50,11 @@ class LoginFragment : Fragment() {
     ): View? {
         val binding: FragmentLoginBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false);
-
         application = requireNotNull(this.activity).application
 
-        CredentialsManager.LoggedIn.observe(this.viewLifecycleOwner, Observer{
+        /*CredentialsManager.LoggedIn.observe(this.viewLifecycleOwner, Observer{
             navigateToVMLIST()
-        })
+        })*/
 
 
         //OAUTH
@@ -73,6 +77,7 @@ class LoginFragment : Fragment() {
         loggedInText = view.findViewById(R.id.logged_in_textview)
 
 
+
        /* binding.lifecycleOwner = this
 
 
@@ -93,10 +98,11 @@ class LoginFragment : Fragment() {
 
         checkIfToken()
         //setLoggedInText()
-        navigateToVMLIST()
+        //navigateToVMLIST()
 
         return view
     }
+
 
     private fun checkIfToken(){
         val token = CredentialsManager.getAccessToken(requireContext())

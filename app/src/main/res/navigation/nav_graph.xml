@@ -12,8 +12,10 @@
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/login_to_profile"
-            app:destination="@+id/profielFragment"
-            />
+            app:destination="@+id/profielFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_VMListFragment"
+            app:destination="@id/VMListFragment" />
     </fragment>
 
     <fragment
