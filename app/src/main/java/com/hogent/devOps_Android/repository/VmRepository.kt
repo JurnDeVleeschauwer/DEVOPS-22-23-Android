@@ -11,6 +11,7 @@ import kotlinx.coroutines.withContext
 import com.hogent.devOps_Android.network.VmApi
 import com.hogent.devOps_Android.database.entities.asDomainModel
 import com.hogent.devOps_Android.database.entities.asDatabaseModel
+import com.hogent.devOps_Android.database.entities.asDatabaseModelDetail
 import com.hogent.devOps_Android.network.NetworkNetworkUserContainer
 import com.hogent.devOps_Android.network.NetworkProject
 import com.hogent.devOps_Android.network.NetworkUser
@@ -27,22 +28,24 @@ class VmRepository(private val database: DatabaseImp, customer_id: String) {
     }
     var UserId = customer_id
 
-    val vms: List<NetworkVMDetail> = database.virtualMachineDao.getAll().asDomainModel()
-
+    val vms: LiveData<List<NetworkVMDetail>> = database.virtualMachineDao.getAll().map {
+        it.asDomainModel()
+    }
     val user: LiveData<NetworkNetworkUserContainer> = database.customerDao.get(customer_id).map { it.asDomainModel()}
     suspend fun refresh() {
         withContext(Dispatchers.IO){
             val projects = VmApi.retrofitService.GetIndexOfProjectByIdUser(UserId).await()
-            projects.asDatabaseModel().map { database.projectDao.insertAll(it) }
+            projects.projects.asDatabaseModel().map { database.projectDao.insertAll(it) }
 
-            for(project in projects){
+            for(project in projects.projects){
                 var projectDetail = VmApi.retrofitService.GetIndexOfProjectById(project.Id).await()
-                for(vm in projectDetail.VirtualMachines){
-                    var vmDetail = VmApi.retrofitService.GetIndexOfVmById(vm.id).await()
-                    database.virtualMachineDao.insertAll(vmDetail.asDatabaseModel())
-                    ProjectVirtualMachineEntity(project_id = project.Id, vm_id = vm.id)
-                    database.projectVirtualMachineDao.insertAll(ProjectVirtualMachineEntity(project_id = project.Id, vm_id = vm.id))
-                }
+                /*TODO for(vm in projectDetail.projectsDetails.VirtualMachines){
+                    var vmDetail = VmApi.retrofitService.GetIndexOfVmById(vm.Id).await()
+                    database.virtualMachineDao.insertAll(vmDetail.vms.asDatabaseModel())
+                    ProjectVirtualMachineEntity(project_id = project.Id, vm_id = vm.Id)
+                    database.projectVirtualMachineDao.insertAll(ProjectVirtualMachineEntity(project_id = project.Id, vm_id = vm.Id))
+                }*/
+                //database.projectDao.insertAll(projectDetail.projectsDetails.asDatabaseModelDetail())
             }
         }
     }

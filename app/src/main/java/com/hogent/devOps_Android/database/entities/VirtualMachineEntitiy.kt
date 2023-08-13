@@ -1,7 +1,13 @@
 package com.hogent.devOps_Android.database.entities
 import androidx.room.*
-import com.hogent.devOps_Android.domain.VirtualMachine
+import com.hogent.devOps_Android.network.NetworkBackup
+import com.hogent.devOps_Android.network.NetworkHardware
 import com.hogent.devOps_Android.network.NetworkVMDetail
+import com.squareup.moshi.FromJson
+import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.JsonReader
+import com.squareup.moshi.JsonWriter
+import com.squareup.moshi.ToJson
 import org.json.JSONObject
 import java.time.LocalDate
 
@@ -16,9 +22,8 @@ data class VirtualMachineEntitiy(
     @PrimaryKey
     var id : Long = 0L,
     val name : String = "",
-    val connection : Connection,
-    val status : VirtualMachineStatus = VirtualMachineStatus.NONE,
-    val operatingSystem: OperatingSystem = OperatingSystem.NONE,
+    val status : VirtualMachineStatus = VirtualMachineStatus.READY,
+    val operatingSystem: OperatingSystem = OperatingSystem.WINDOWS_10,
     val hardware: HardWare = HardWare(0,0,0),
     val mode : String = "",
     val contractId : Long = 0L,
@@ -35,21 +40,62 @@ data class HardWare(
     val cpu: Int
 )
 
-enum class OperatingSystem{
-    NONE,
-    WINDOWS_2012,
-    WINDOWS_2016,
-    WINDOWS_2019,
-    LINUX_UBUNTU,
-    LINUX_KALI,
-    RASPBERRY_PI
+enum class OperatingSystem(val value: Int){
+    WINDOWS_10(0),
+    WINDOWS_SERVER2019(1),
+    KALI_LINUX(2),
+    UBUNTU_22_04(3),
+    FEDORA_36(4),
+    FEDORA_35(5);
+    companion object {
+        fun fromValueOrNull(value: Int): OperatingSystem? {
+            return OperatingSystem.values().firstOrNull { it.value == value }
+        }
+    }
 }
-enum class VirtualMachineStatus{
-    NONE,
-    GEREED,
-    RUNNING,
-    TERMINATED,
-    AANGEVRAAGD
+
+class OperatingSystemEnumJsonAdapter : JsonAdapter<OperatingSystem>() {
+    @FromJson
+    override fun fromJson(reader: JsonReader): OperatingSystem? {
+        return if (reader.peek() != JsonReader.Token.NULL) {
+            OperatingSystem.fromValueOrNull(reader.nextInt())
+        } else {
+            reader.nextNull()
+        }
+    }
+
+    @ToJson
+    override fun toJson(writer: JsonWriter, value: OperatingSystem?) {
+        writer.value(value?.value)
+    }
+}
+enum class VirtualMachineStatus(val value: Int){
+    WAITING_APPROVEMENT(0),
+    READY(1),
+    RUNNING(2),
+    PAUSED(3),
+    STOPPED(4);
+    companion object {
+        fun fromValueOrNull(value: Int): VirtualMachineStatus? {
+            return VirtualMachineStatus.values().firstOrNull { it.value == value }
+        }
+    }
+}
+
+class VirtualMachineStatusEnumJsonAdapter : JsonAdapter<VirtualMachineStatus>() {
+    @FromJson
+    override fun fromJson(reader: JsonReader): VirtualMachineStatus? {
+        return if (reader.peek() != JsonReader.Token.NULL) {
+            VirtualMachineStatus.fromValueOrNull(reader.nextInt())
+        } else {
+            reader.nextNull()
+        }
+    }
+
+    @ToJson
+    override fun toJson(writer: JsonWriter, value: VirtualMachineStatus?) {
+        writer.value(value?.value)
+    }
 }
 
 /*
@@ -128,10 +174,30 @@ class ConnectionConverter{
     }
 }
 
-enum class BackupType(str: String) {
-    DAGELIJKS("Dagelijks"),  // No connection || No server
-    WEKELIJKS("Wekelijks"),                                // has connection && server
-    MAANDELIJKS("Maandelijks"),
+enum class BackupType(val value: Int) {
+    DAGELIJKS(0),  // No connection || No server
+    WEKELIJKS(1),                                // has connection && server
+    MAANDELIJKS(2);
+    companion object {
+        fun fromValueOrNull(value: Int): BackupType? {
+            return BackupType.values().firstOrNull { it.value == value }
+        }
+    }
+}
+class BackupTypeEnumJsonAdapter : JsonAdapter<BackupType>() {
+    @FromJson
+    override fun fromJson(reader: JsonReader): BackupType? {
+        return if (reader.peek() != JsonReader.Token.NULL) {
+            BackupType.fromValueOrNull(reader.nextInt())
+        } else {
+            reader.nextNull()
+        }
+    }
+
+    @ToJson
+    override fun toJson(writer: JsonWriter, value: BackupType?) {
+        writer.value(value?.value)
+    }
 }
 
 fun List<VirtualMachineEntitiy>.asDomainModel() : List<NetworkVMDetail>{
@@ -139,12 +205,10 @@ fun List<VirtualMachineEntitiy>.asDomainModel() : List<NetworkVMDetail>{
         NetworkVMDetail(
             Id = it.id,
             Name = it.name,
-            VMConnection = it.connection,
             OperatingSystem = it.operatingSystem,
-            Hardware = it.hardware,
+            Hardware = NetworkHardware(it.hardware.memory,it.hardware.storage, it.hardware.cpu),
             Mode = it.status,
-            ContractId = it.contractId,
-            BackUp = it.backup,
+            BackUp = NetworkBackup(it.backup.type, it.backup.date),
             Why = it.why
         )
     }
@@ -155,12 +219,10 @@ fun List<NetworkVMDetail>.asDatabaseModel() : List<VirtualMachineEntitiy> {
         VirtualMachineEntitiy(
             id = it.Id,
             name = it.Name,
-            connection = it.VMConnection,
             operatingSystem = it.OperatingSystem,
-            hardware = it.Hardware,
+            hardware = HardWare(it.Hardware.Memory,it.Hardware.Storage, it.Hardware.Amount_vCPU),
             status = it.Mode,
-            contractId = it.ContractId,
-            backup = it.BackUp,
+            backup = Backup(it.BackUp.type, it.BackUp.date),
             why = it.Why
         )
     }
@@ -170,12 +232,10 @@ fun VirtualMachineEntitiy.asDomainModel() : NetworkVMDetail{
     return NetworkVMDetail(
             Id = id,
             Name = name,
-            VMConnection = connection,
             OperatingSystem = operatingSystem,
-            Hardware = hardware,
+            Hardware = NetworkHardware(hardware.memory, hardware.storage, hardware.cpu),
             Mode = status,
-            ContractId = contractId,
-            BackUp = backup,
+            BackUp = NetworkBackup(backup.type, backup.date),
             Why = why
         )
 
@@ -185,12 +245,10 @@ fun NetworkVMDetail.asDatabaseModel() : VirtualMachineEntitiy {
     return VirtualMachineEntitiy(
             id = Id,
             name = Name,
-            connection = VMConnection,
             operatingSystem = OperatingSystem,
-            hardware = Hardware,
+            hardware = HardWare(Hardware.Memory, Hardware.Storage, Hardware.Storage),
             status = Mode,
-            contractId = ContractId,
-            backup = BackUp,
+            backup = Backup(BackUp.type, BackUp.date),
             why = Why
         )
 

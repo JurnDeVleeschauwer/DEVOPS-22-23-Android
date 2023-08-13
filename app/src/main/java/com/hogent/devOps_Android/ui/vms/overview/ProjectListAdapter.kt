@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hogent.devOps_Android.R
@@ -16,7 +17,7 @@ import timber.log.Timber
 
 class ProjectListAdapter(
     private val projectList: List<NetworkProject>,
-    private val virtualmachineList: List<NetworkVMDetail>,
+    private val virtualmachineList: LiveData<List<NetworkVMDetail>>,
     private val context: Context?,
     private val application: Application
 ) : RecyclerView.Adapter<ProjectListAdapter.ViewHolder>() {
@@ -68,7 +69,7 @@ class ProjectListAdapter(
         newvirtualMachineList.clear()
         Timber.i("filterVirtualMachines Project ID:")
         Timber.i(projectId.toString())
-        virtualmachineList?.forEach { i ->
+        virtualmachineList.value?.forEach { i ->
                 newvirtualMachineList.add(i)
         }
         Timber.i("filterVirtualMachines:")

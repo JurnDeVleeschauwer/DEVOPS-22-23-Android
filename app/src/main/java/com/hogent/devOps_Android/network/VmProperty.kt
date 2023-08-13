@@ -1,9 +1,8 @@
 package com.hogent.devOps_Android.network
 
 import com.hogent.devOps_Android.database.entities.Backup
-import com.hogent.devOps_Android.database.entities.Connection
+import com.hogent.devOps_Android.database.entities.BackupType
 import com.hogent.devOps_Android.database.entities.Course
-import com.hogent.devOps_Android.domain.User
 import com.squareup.moshi.JsonClass
 import com.hogent.devOps_Android.database.entities.HardWare
 import com.hogent.devOps_Android.database.entities.VirtualMachineStatus
@@ -11,44 +10,66 @@ import com.hogent.devOps_Android.database.entities.OperatingSystem
 import com.hogent.devOps_Android.database.entities.ProjectVirtualMachineEntity
 import com.hogent.devOps_Android.database.entities.Role
 import com.squareup.moshi.Json
+import java.time.LocalDate
 
 @JsonClass(generateAdapter = true)
-data class NetworkVMContainer(val videos: List<NetworkVMDetail>)
+data class NetworkVMContainer(val vms: NetworkVMDetail)
 
 @JsonClass(generateAdapter = true)
 data class NetworkVMDetail(
-    val Id: Long,
-    val Name: String,
-    val Mode: VirtualMachineStatus,
-    val Hardware: HardWare,
-    val OperatingSystem: OperatingSystem,
-    val ContractId: Long,
-    val BackUp: Backup,
+    @Json(name = "id") val Id: Long,
+    @Json(name = "name") val Name: String,
+    @Json(name = "mode") val Mode: VirtualMachineStatus,
+    @Json(name = "hardware") val Hardware: NetworkHardware,
+    @Json(name = "operatingSystem") val OperatingSystem: OperatingSystem,
+    //@Json(name = "contract")val ContractId: Long,
+    @Json(name = "backUp") val BackUp: NetworkBackup,
     //public FysiekeServer? FysiekeServer { get; set; }
-    val VMConnection: Connection,
-    val Why: String)
+    @Json(name = "why") val Why: String)
+
+@JsonClass(generateAdapter = true)
+data class NetworkHardware(
+    @Json(name = "memory")val Memory: Int,
+    @Json(name = "storage")val Storage: Int,
+    @Json(name = "amount_vCPU")val Amount_vCPU: Int,
+)
+
+@JsonClass(generateAdapter = true)
+data class NetworkBackup(
+    @Json(name = "type")val type: BackupType,
+    @Json(name = "lastBackup")val date: LocalDate,
+)
 
 
 
 @JsonClass(generateAdapter = true)
-data class NetworkProjectenContainer(val videos: List<NetworkProject>)
+data class NetworkProjectenContainer(@Json(name = "projecten")val projects: List<NetworkProject>)
 
 @JsonClass(generateAdapter = true)
 data class NetworkProject(
-    val Id: Long,
-    val Name: String,
-    val User: User)
+    @Json(name = "id")val Id: Long,
+    @Json(name = "name")val Name: String,
+    @Json(name = "user")val User: NetworkUserProject
+)
+
+@JsonClass(generateAdapter = true)
+data class NetworkUserProject(
+    @Json(name = "id")val Id: Long,
+    @Json(name = "userId")val UserId: String
+)
 
 
 @JsonClass(generateAdapter = true)
-data class NetworkProjectenDetailContainer(val videos: List<NetworkProjectDetail>)
+data class NetworkProjectenDetailContainer( @Json(name = "project")val projectsDetails: NetworkProjectDetail)
 
 @JsonClass(generateAdapter = true)
 data class NetworkProjectDetail(
-    val Id: Long,
-    val Name: String,
-    val User: User,
-    val VirtualMachines: List<ProjectVirtualMachineEntity>)
+    @Json(name = "id")val Id: Long,
+    @Json(name = "name")val Name: String,
+    //TODO @Json(name = "virtualMachines")val VirtualMachines: NetworkVMListContainer
+    )
+@JsonClass(generateAdapter = true)
+data class NetworkVMListContainer(@Json(name = "virtualMachines")val vms: List<NetworkVMDetail>)
 
 
 @JsonClass(generateAdapter = true)

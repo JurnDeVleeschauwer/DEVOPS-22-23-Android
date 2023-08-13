@@ -182,7 +182,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="5dp"
-            android:text="@{@string/ramDetail(vmViewModel.vm.hardware.memory)}"
+            android:text="@{@string/ramDetail(vmViewModel.vm.hardware.Memory)}"
             tools:text="RAM: 16GB"
             app:layout_constraintStart_toStartOf="@+id/hardware_detail"
             app:layout_constraintTop_toBottomOf="@+id/cardTitleHardware"
@@ -195,7 +195,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="5dp"
-            android:text="@{@string/coreDetail(vmViewModel.vm.hardware.cpu)}"
+            android:text="@{@string/coreDetail(vmViewModel.vm.hardware.Amount_vCPU)}"
             tools:text="CPU's: 6"
             app:layout_constraintStart_toStartOf="@+id/hardware_detail"
             app:layout_constraintTop_toBottomOf="@+id/ramDetail"
@@ -207,7 +207,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="5dp"
-            android:text="@{@string/storageDetail(vmViewModel.vm.hardware.storage)}"
+            android:text="@{@string/storageDetail(vmViewModel.vm.hardware.Storage)}"
             tools:text="Storage: 512GB"
             app:layout_constraintStart_toStartOf="@+id/hardware_detail"
             app:layout_constraintTop_toBottomOf="@+id/coreDetail"
@@ -237,55 +237,6 @@
             tools:text="Backup: 18/02/2022"
             app:layout_constraintStart_toStartOf="@+id/hardware_detail"
             app:layout_constraintTop_toBottomOf="@+id/backupDetail"
-            android:textColor="@color/black"/>
-
-
-        <TextView
-            android:id="@+id/serverDetail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="5dp"
-            android:text="@{@string/serverDetail(vmViewModel.vm.VMConnection.fqdn)}"
-            tools:text="Server Adres: MOCK-FQDN"
-            app:layout_constraintStart_toStartOf="@+id/connection_detail"
-            app:layout_constraintTop_toBottomOf="@+id/cardTitleConnectie"
-            android:textColor="@color/black"/>
-
-        <TextView
-            android:id="@+id/ipDetail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="5dp"
-            android:text="@{@string/ipDetail(vmViewModel.vm.VMConnection.ipAdres)}"
-            tools:text="IP-adres: 25.236.117.11"
-            app:layout_constraintStart_toStartOf="@+id/connection_detail"
-            app:layout_constraintTop_toBottomOf="@+id/serverDetail"
-            android:textColor="@color/black"/>
-
-        <TextView
-            android:id="@+id/usernameDetail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="5dp"
-            android:text="@{@string/usernameDetail(vmViewModel.vm.VMConnection.username)}"
-            tools:text="Username: MOCK-USER"
-            app:layout_constraintStart_toStartOf="@+id/connection_detail"
-            app:layout_constraintTop_toBottomOf="@+id/ipDetail"
-            android:textColor="@color/black"/>
-
-        <TextView
-            android:id="@+id/passwordDetail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="5dp"
-            android:text="@{@string/passwordDetail(vmViewModel.vm.VMConnection.password)}"
-            tools:text="Password: DW2]]YmiPrvz34-dh5]s"
-            app:layout_constraintStart_toStartOf="@+id/connection_detail"
-            app:layout_constraintTop_toBottomOf="@+id/usernameDetail"
             android:textColor="@color/black"/>
 
 

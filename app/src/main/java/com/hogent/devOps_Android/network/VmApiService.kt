@@ -38,15 +38,15 @@ private val retrofit = Retrofit.Builder()
 interface VmApiService {
     @GET("project/User")
     fun GetIndexOfProjectByIdUser(@Query("UserId")customer_id: String):
-            Deferred<List<NetworkProject>>
+            Deferred<NetworkProjectenContainer>
 
     @GET("project/Detail")
     fun GetIndexOfProjectById( @Query("ProjectenId") project_id: Long):
-            Deferred<NetworkProjectDetail>
+            Deferred<NetworkProjectenDetailContainer>
 
     @GET("virtualmachine/{id}")
     fun GetIndexOfVmById(@Path("id")vm_id: Long):
-            Deferred<NetworkVMDetail>
+            Deferred<NetworkVMContainer>
 
     @GET("User/{id}")
     fun GetIndexOfUserById( @Path("id") UserId: String):

@@ -1,5 +1,6 @@
 package com.hogent.devOps_Android.database.daos
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -14,10 +15,10 @@ interface VirtualMachineDao {
     fun insertAll(vararg vms: VirtualMachineEntitiy)
 
     @Query("SELECT * FROM virtualmachine_table WHERE id = :key")
-    fun get(key: Long): VirtualMachineEntitiy?
+    fun get(key: Long): LiveData<VirtualMachineEntitiy>
 
     @Query("SELECT * FROM virtualmachine_table")
-    fun getAll(): List<VirtualMachineEntitiy>
+    fun getAll(): LiveData<List<VirtualMachineEntitiy>>
 
 
 }

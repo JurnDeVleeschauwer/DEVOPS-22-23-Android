@@ -10,7 +10,7 @@ interface ProjectDao {
     fun insertAll(vararg projects: ProjectEntitiy)
 
     @Query("SELECT * FROM project_table WHERE id = :key")
-    fun get(key : Long): ProjectEntitiy
+    fun get(key : Long): LiveData<ProjectEntitiy>
 
     @Query("select * from project_table p where p.userid == :key")
     fun getByCustomerId(key: String): LiveData<List<ProjectEntitiy>>?
