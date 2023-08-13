@@ -1,4 +1,6 @@
 package com.hogent.devOps_Android.database.entities
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.room.*
 import com.hogent.devOps_Android.network.NetworkBackup
 import com.hogent.devOps_Android.network.NetworkHardware
@@ -10,14 +12,16 @@ import com.squareup.moshi.JsonWriter
 import com.squareup.moshi.ToJson
 import org.json.JSONObject
 import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.ZoneOffset
 
 
-@Entity(tableName = "virtualmachine_table",
+@Entity(tableName = "virtualmachine_table"/*,
     foreignKeys = [ForeignKey(
         entity = ContractEntitiy::class,
         childColumns = ["contractId"],
         parentColumns = ["id"]
-    )])
+    )]*/)
 data class VirtualMachineEntitiy(
     @PrimaryKey
     var id : Long = 0L,
@@ -128,7 +132,7 @@ class HardwareConverter{
 
 data class Backup(
     val type: BackupType,
-    val date: LocalDate,
+    val date: String,
 )
 
 
@@ -137,15 +141,16 @@ class BackupConverter{
     fun fromBackup(backup: Backup): String {
         return JSONObject().apply {
             put("type", backup.type)
-            put("backupDate", backup.date)
+            put("lastBackup", backup.date)
         }.toString();
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     @TypeConverter
     fun toBackup(json: String) : Backup{
         val backup = JSONObject(json)
         val backupType = backup.get("type").toString()
 
-        return Backup(BackupType.valueOf(backupType),  LocalDate.parse(backup.get("backupDate").toString()))
+        return Backup(BackupType.valueOf(backupType),  backup.get("lastBackup").toString())
     }
 }
 
@@ -214,6 +219,8 @@ fun List<VirtualMachineEntitiy>.asDomainModel() : List<NetworkVMDetail>{
     }
 }
 
+
+
 fun List<NetworkVMDetail>.asDatabaseModel() : List<VirtualMachineEntitiy> {
     return map {
         VirtualMachineEntitiy(
@@ -251,5 +258,25 @@ fun NetworkVMDetail.asDatabaseModel() : VirtualMachineEntitiy {
             backup = Backup(BackUp.type, BackUp.date),
             why = Why
         )
+
+}
+
+class LocalDateJsonAdapter: JsonAdapter<LocalDate>() {
+    @RequiresApi(Build.VERSION_CODES.O)
+    @FromJson
+    override fun fromJson(reader: JsonReader): LocalDate? {
+        return if (reader.peek() != JsonReader.Token.NULL) {
+            LocalDate.ofEpochDay(reader.nextLong())
+        } else {
+            reader.nextNull()
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    @ToJson
+    override fun toJson(writer: JsonWriter, value: LocalDate?) {
+        writer.value(value?.toEpochDay())
+    }
+
 
 }

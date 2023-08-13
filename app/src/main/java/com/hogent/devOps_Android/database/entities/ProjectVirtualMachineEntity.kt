@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey
         childColumns = ["project_id"],
         parentColumns = ["id"]
     ), androidx.room.ForeignKey(
-        entity = ProjectEntitiy::class,
+        entity = VirtualMachineEntitiy::class,
         childColumns = ["vm_id"],
         parentColumns = ["id"])])
 data class ProjectVirtualMachineEntity(

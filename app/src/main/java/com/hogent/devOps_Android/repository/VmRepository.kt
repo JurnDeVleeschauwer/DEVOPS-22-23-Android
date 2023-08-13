@@ -39,12 +39,11 @@ class VmRepository(private val database: DatabaseImp, customer_id: String) {
 
             for(project in projects.projects){
                 var projectDetail = VmApi.retrofitService.GetIndexOfProjectById(project.Id).await()
-                /*TODO for(vm in projectDetail.projectsDetails.VirtualMachines){
+                for(vm in projectDetail.projectsDetails.VirtualMachines){
                     var vmDetail = VmApi.retrofitService.GetIndexOfVmById(vm.Id).await()
                     database.virtualMachineDao.insertAll(vmDetail.vms.asDatabaseModel())
-                    ProjectVirtualMachineEntity(project_id = project.Id, vm_id = vm.Id)
                     database.projectVirtualMachineDao.insertAll(ProjectVirtualMachineEntity(project_id = project.Id, vm_id = vm.Id))
-                }*/
+                }
                 //database.projectDao.insertAll(projectDetail.projectsDetails.asDatabaseModelDetail())
             }
         }

@@ -13,7 +13,7 @@ import com.squareup.moshi.Json
 import java.time.LocalDate
 
 @JsonClass(generateAdapter = true)
-data class NetworkVMContainer(val vms: NetworkVMDetail)
+data class NetworkVMContainer(@Json(name = "virtualMachine")val vms: NetworkVMDetail)
 
 @JsonClass(generateAdapter = true)
 data class NetworkVMDetail(
@@ -37,7 +37,7 @@ data class NetworkHardware(
 @JsonClass(generateAdapter = true)
 data class NetworkBackup(
     @Json(name = "type")val type: BackupType,
-    @Json(name = "lastBackup")val date: LocalDate,
+    @Json(name = "lastBackup")val date: String, //Rember to change to LocalDate when used later
 )
 
 
@@ -66,7 +66,7 @@ data class NetworkProjectenDetailContainer( @Json(name = "project")val projectsD
 data class NetworkProjectDetail(
     @Json(name = "id")val Id: Long,
     @Json(name = "name")val Name: String,
-    //TODO @Json(name = "virtualMachines")val VirtualMachines: NetworkVMListContainer
+    @Json(name = "virtualMachines")val VirtualMachines: List<NetworkVMDetail>
     )
 @JsonClass(generateAdapter = true)
 data class NetworkVMListContainer(@Json(name = "virtualMachines")val vms: List<NetworkVMDetail>)

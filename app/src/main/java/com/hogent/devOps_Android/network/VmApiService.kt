@@ -1,7 +1,11 @@
 package com.hogent.devOps_Android.network
 
+import com.hogent.devOps_Android.database.entities.BackupTypeEnumJsonAdapter
 import com.hogent.devOps_Android.database.entities.CourseEnumJsonAdapter
+import com.hogent.devOps_Android.database.entities.LocalDateJsonAdapter
+import com.hogent.devOps_Android.database.entities.OperatingSystemEnumJsonAdapter
 import com.hogent.devOps_Android.database.entities.RoleEnumJsonAdapter
+import com.hogent.devOps_Android.database.entities.VirtualMachineStatusEnumJsonAdapter
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -27,6 +31,10 @@ private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .add(RoleEnumJsonAdapter())
     .add(CourseEnumJsonAdapter())
+    .add(OperatingSystemEnumJsonAdapter())
+    .add(VirtualMachineStatusEnumJsonAdapter())
+    .add(BackupTypeEnumJsonAdapter())
+    .add(LocalDateJsonAdapter())
     .build()
 
 private val retrofit = Retrofit.Builder()
