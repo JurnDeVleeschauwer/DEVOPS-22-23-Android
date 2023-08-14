@@ -34,7 +34,7 @@ private val moshi = Moshi.Builder()
     .add(OperatingSystemEnumJsonAdapter())
     .add(VirtualMachineStatusEnumJsonAdapter())
     .add(BackupTypeEnumJsonAdapter())
-    .add(LocalDateJsonAdapter())
+    //.add(LocalDateJsonAdapter())
     .build()
 
 private val retrofit = Retrofit.Builder()

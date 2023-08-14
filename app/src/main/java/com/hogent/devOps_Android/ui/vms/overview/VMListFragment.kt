@@ -57,12 +57,12 @@ class VMListFragment : Fragment() {
 
         })
         viewModel.vms.observe(viewLifecycleOwner, Observer {
-            recyclerView.adapter = ProjectListAdapter(viewModel.projects.value!!, viewModel.vms, viewModel.projectsvms,  this.context, this.application);
+            recyclerView.adapter = ProjectListAdapter(viewModel.projects.value, viewModel.vms, viewModel.projectsvms,  this.context, this.application);
 
         })
 
         viewModel.projectsvms.observe(viewLifecycleOwner, Observer {
-            recyclerView.adapter = ProjectListAdapter(viewModel.projects.value!!, viewModel.vms, viewModel.projectsvms,  this.context, this.application);
+            recyclerView.adapter = ProjectListAdapter(viewModel.projects.value, viewModel.vms, viewModel.projectsvms,  this.context, this.application);
 
         })
         return binding.root

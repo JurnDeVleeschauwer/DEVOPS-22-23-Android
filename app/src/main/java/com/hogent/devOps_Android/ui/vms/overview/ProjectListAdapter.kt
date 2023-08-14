@@ -17,9 +17,9 @@ import timber.log.Timber
 
 
 class ProjectListAdapter(
-    private val projectList: List<NetworkProject>,
-    private val virtualmachineList: LiveData<List<NetworkVMDetail>>,
-    private val projectsvirtualmachinsList: LiveData<List<ProjectVirtualMachineEntity>>,
+    private val projectList: List<NetworkProject>?,
+    private val virtualmachineList: LiveData<List<NetworkVMDetail>>?,
+    private val projectsvirtualmachinsList: LiveData<List<ProjectVirtualMachineEntity>>?,
     private val context: Context?,
     private val application: Application
 ) : RecyclerView.Adapter<ProjectListAdapter.ViewHolder>() {
@@ -48,24 +48,28 @@ class ProjectListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val project = projectList[position]
+        val project = projectList?.get(position)
 
         recyclerView = view.findViewById(R.id.virtual_machine_recyclerview)
         recyclerView.layoutManager = LinearLayoutManager(context);
         Timber.i("ProjectAdapter:")
         Timber.i(virtualmachineList.toString())
-        Timber.i(virtualmachineList.value?.size.toString())
-        filterVirtualMachines(project.Id)
+        Timber.i(virtualmachineList?.value?.size.toString())
+        if (project != null) {
+            filterVirtualMachines(project.Id)
+        }
         recyclerView.adapter =
             VirtualMachineListAdapter(newvirtualMachineList, this.application)
 
 
         //hier heb je het project en de holder, je kan er dingen op setten
-        holder.textView1.text = project.Name
+        if (project != null) {
+            holder.textView1.text = project.Name
+        }
     }
 
     override fun getItemCount(): Int {
-        return projectList.size
+        return projectList?.size ?: 0
     }
 
 
@@ -73,8 +77,8 @@ class ProjectListAdapter(
         newvirtualMachineList.clear()
         Timber.i("filterVirtualMachines Project ID:")
         Timber.i(projectId.toString())
-        virtualmachineList.value?.forEach { i ->
-            if(projectsvirtualmachinsList.value != null) {
+        virtualmachineList?.value?.forEach { i ->
+            if(projectsvirtualmachinsList?.value != null) {
                 for (projectVirtualmachine in projectsvirtualmachinsList.value!!) {
                     if (projectVirtualmachine.project_id == projectId && projectVirtualmachine.vm_id == i.Id) {
                         newvirtualMachineList.add(i)
