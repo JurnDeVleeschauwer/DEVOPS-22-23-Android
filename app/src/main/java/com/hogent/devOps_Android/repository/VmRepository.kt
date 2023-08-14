@@ -46,6 +46,9 @@ class VmRepository(private val database: DatabaseImp, customer_id: String) {
                 }
                 //database.projectDao.insertAll(projectDetail.projectsDetails.asDatabaseModelDetail())
             }
+            Timber.i("Refresh:")
+            Timber.i(database.virtualMachineDao.getAllList().toString())
+            Timber.i(vms.value.toString())
         }
     }
 

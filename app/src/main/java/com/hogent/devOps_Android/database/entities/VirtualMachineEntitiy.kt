@@ -29,7 +29,6 @@ data class VirtualMachineEntitiy(
     val status : VirtualMachineStatus = VirtualMachineStatus.READY,
     val operatingSystem: OperatingSystem = OperatingSystem.WINDOWS_10,
     val hardware: HardWare = HardWare(0,0,0),
-    val mode : String = "",
     val contractId : Long = 0L,
     val backup : Backup,
     val why : String = ""

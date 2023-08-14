@@ -20,6 +20,9 @@ interface VirtualMachineDao {
     @Query("SELECT * FROM virtualmachine_table")
     fun getAll(): LiveData<List<VirtualMachineEntitiy>>
 
+    @Query("SELECT * FROM virtualmachine_table")
+    fun getAllList(): List<VirtualMachineEntitiy>
+
 
 }
 

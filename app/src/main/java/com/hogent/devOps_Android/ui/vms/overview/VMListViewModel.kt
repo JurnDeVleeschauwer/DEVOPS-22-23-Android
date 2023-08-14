@@ -35,6 +35,8 @@ class VMListViewModel(app: Application, customer_id: String) : ViewModel() {
 
     val projects = vmRepository.projects
     val vms = vmRepository.vms
+    
+
 
 
     /*private val db_projecten = db.projectDao;

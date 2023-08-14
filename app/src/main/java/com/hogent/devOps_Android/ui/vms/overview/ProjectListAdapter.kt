@@ -41,6 +41,7 @@ class ProjectListAdapter(
             LayoutInflater.from(parent.context).inflate(R.layout.project_container, parent, false)
 
 
+
         return ViewHolder(view)
     }
 
@@ -51,6 +52,7 @@ class ProjectListAdapter(
         recyclerView.layoutManager = LinearLayoutManager(context);
         Timber.i("ProjectAdapter:")
         Timber.i(virtualmachineList.toString())
+        Timber.i(virtualmachineList.value?.size.toString())
         filterVirtualMachines(project.Id)
         recyclerView.adapter =
             VirtualMachineListAdapter(newvirtualMachineList, this.application)

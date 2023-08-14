@@ -50,13 +50,16 @@ class VMListFragment : Fragment() {
 
         Timber.i("VMListFragment:")
         Timber.i(viewModel.projects.value.toString()/*.virtualmachine.value.toString()*/)
+        Timber.i(viewModel.vms.value.toString())
 
         viewModel.projects.observe(viewLifecycleOwner, Observer {
             recyclerView.adapter = ProjectListAdapter(it, viewModel.vms, this.context, this.application);
 
         })
+        viewModel.vms.observe(viewLifecycleOwner, Observer {
+            recyclerView.adapter = ProjectListAdapter(viewModel.projects.value!!, viewModel.vms, this.context, this.application);
 
-
+        })
         return binding.root
     }
 
