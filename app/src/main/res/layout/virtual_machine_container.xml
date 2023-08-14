@@ -38,17 +38,7 @@
             android:textSize="10sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/klant"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="15dp"
-            android:text="Klant:"
-            android:textAlignment="center"
-            android:textSize="10sp"
-            android:textStyle="bold" />
+
 
 
 

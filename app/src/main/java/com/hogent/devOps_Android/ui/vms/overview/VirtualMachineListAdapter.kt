@@ -25,7 +25,7 @@ class VirtualMachineListAdapter(
         //cardview ( = container )  als voorbeeld maar kan je ook gebruiken
         val textView1: TextView = itemView.findViewById(R.id.status)
         val textView2: TextView = itemView.findViewById(R.id.naam)
-        val textView3: TextView = itemView.findViewById(R.id.klant)
+        //val textView3: TextView = itemView.findViewById(R.id.klant)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -41,7 +41,7 @@ class VirtualMachineListAdapter(
         if (!header) {
             holder.textView1.textSize = 15F
             holder.textView2.textSize = 15F
-            holder.textView3.textSize = 15F
+            //holder.textView3.textSize = 15F
             header = true
 
         } else {
@@ -52,7 +52,7 @@ class VirtualMachineListAdapter(
             //hier heb je het project en de holder, je kan er dingen op setten
             holder.textView1.text = virtualmachine?.Mode.toString()
             holder.textView2.text = virtualmachine?.Name
-            //TODO holder.textView3.text = virtualmachine?.email
+            //holder.textView3.text = virtualmachine?.Why
 
             holder.itemView.setOnClickListener {
                 Timber.d(String.format("VM ID :  %s", virtualmachine!!.Id.toString()))

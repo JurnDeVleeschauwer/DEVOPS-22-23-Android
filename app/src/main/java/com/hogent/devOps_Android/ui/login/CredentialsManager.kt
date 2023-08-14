@@ -13,6 +13,7 @@ object CredentialsManager {
 
     private lateinit var editor: SharedPreferences.Editor
     var LoggedIn = MutableLiveData(false)
+    var UserId = ""
 
     fun saveCredentials(context: Context, credentials: Credentials) {
 

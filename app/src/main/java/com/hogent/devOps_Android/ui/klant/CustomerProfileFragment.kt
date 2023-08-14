@@ -14,6 +14,7 @@ import androidx.room.Database
 import com.hogent.devOps_Android.R
 import com.hogent.devOps_Android.database.DatabaseImp
 import com.hogent.devOps_Android.databinding.FragmentProfielBinding
+import com.hogent.devOps_Android.ui.login.CredentialsManager
 import com.hogent.devOps_Android.util.closeKeyboardOnTouch
 
 
@@ -23,10 +24,10 @@ class CustomerProfileFragment: Fragment() {
         val binding: FragmentProfielBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_profiel, container, false);
         val application = requireNotNull(this.activity).application
 
-        val customerId : String = requireArguments().get("customerId") as String
 
 
-        val viewModelFactory = CustomerViewModelFactory(application, customerId);
+
+        val viewModelFactory = CustomerViewModelFactory(application, CredentialsManager.UserId);
 
         val customerView = ViewModelProvider(this, viewModelFactory)[(CustomerViewModel::class.java)];
 

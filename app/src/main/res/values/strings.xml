@@ -101,4 +101,7 @@
     <string name="passwordDetail">Password: %1$s</string>
     <string name="vm_details_fragment">VM Details</string>
     <string name="home">Home</string>
+    <string name="details">details</string>
+    <string name="algemeen">Algemeen</string>
+    <string name="hardware">Hardware</string>
 </resources>

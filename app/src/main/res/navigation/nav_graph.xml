@@ -30,14 +30,7 @@
         android:id="@+id/profielFragment"
         android:name="com.hogent.devOps_Android.ui.klant.CustomerProfileFragment"
         android:label="@string/profiel"
-        tools:layout="@layout/fragment_profiel">
-
-        <argument
-            android:name="customerId"
-            app:argType="string"
-            />
-
-    </fragment>
+        tools:layout="@layout/fragment_profiel"/>
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.hogent.devOps_Android.ui.vms.details.VMDetailsFragment"
@@ -63,9 +56,6 @@
             app:destination="@+id/detailsFragment">
 
         </action>
-        <argument
-            android:name="customerId"
-            app:argType="string" />
 
 
     </fragment>

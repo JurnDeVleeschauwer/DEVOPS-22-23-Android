@@ -150,14 +150,15 @@ class LoginFragment : Fragment() {
     }
 
     private fun navigateToVMLIST() {
+        CredentialsManager.UserId = UserId
         if(loggedIn) {
             //var customerId = CredentialsManager.getAccessToken(requireContext())
             Timber.i(UserId)
             if (UserId != null) {
                 /*NavHostFragment.findNavController(this)
-                    .navigate(LoginFragmentDirections.loginToProfile(UserId))*/
+                    .navigate(LoginFragmentDirections.loginToProfile())*/
                 NavHostFragment.findNavController(this)
-                    .navigate(LoginFragmentDirections.actionLoginFragmentToVMListFragment(UserId))
+                    .navigate(LoginFragmentDirections.actionLoginFragmentToVMListFragment())
             }
         }
     }

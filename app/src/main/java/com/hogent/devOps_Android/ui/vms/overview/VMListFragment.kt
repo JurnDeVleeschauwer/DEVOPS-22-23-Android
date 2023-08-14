@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hogent.devOps_Android.R
 import com.hogent.devOps_Android.databinding.FragmentVmlistBinding
+import com.hogent.devOps_Android.ui.login.CredentialsManager
 import com.hogent.devOps_Android.util.closeKeyboardOnTouch
 import timber.log.Timber
 
@@ -36,8 +37,8 @@ class VMListFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.fragment_vmlist, container, false);
         application = requireNotNull(this.activity).application
 
-        val customerId : String = requireArguments().get("customerId") as String
-        val viewModelFactory = VMListViewModelFactory(application, customerId);
+
+        val viewModelFactory = VMListViewModelFactory(application, CredentialsManager.UserId);
 
         viewModel = ViewModelProvider(this, viewModelFactory)[(VMListViewModel::class.java)];
 
