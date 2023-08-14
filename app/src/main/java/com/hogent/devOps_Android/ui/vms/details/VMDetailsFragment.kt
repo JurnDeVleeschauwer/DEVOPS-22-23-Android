@@ -25,7 +25,7 @@ class VMDetailsFragment : Fragment() {
 
 
         val appContext = requireNotNull(this.activity).application
-        var vm_id : Long = arguments!!.getLong("vm_id")
+        var vm_id : Long = requireArguments().getLong("vm_id")
         val viewModelFactory = VMDetailsViewModelFactory(appContext, vm_id)
         val viewModel = ViewModelProvider(this, viewModelFactory)[VMDetailsViewModel::class.java];
 

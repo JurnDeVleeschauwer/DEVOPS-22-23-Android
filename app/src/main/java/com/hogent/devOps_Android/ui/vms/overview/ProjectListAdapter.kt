@@ -10,6 +10,7 @@ import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hogent.devOps_Android.R
+import com.hogent.devOps_Android.database.entities.ProjectVirtualMachineEntity
 import com.hogent.devOps_Android.network.NetworkProject
 import com.hogent.devOps_Android.network.NetworkVMDetail
 import timber.log.Timber
@@ -18,6 +19,7 @@ import timber.log.Timber
 class ProjectListAdapter(
     private val projectList: List<NetworkProject>,
     private val virtualmachineList: LiveData<List<NetworkVMDetail>>,
+    private val projectsvirtualmachinsList: LiveData<List<ProjectVirtualMachineEntity>>,
     private val context: Context?,
     private val application: Application
 ) : RecyclerView.Adapter<ProjectListAdapter.ViewHolder>() {
@@ -72,7 +74,14 @@ class ProjectListAdapter(
         Timber.i("filterVirtualMachines Project ID:")
         Timber.i(projectId.toString())
         virtualmachineList.value?.forEach { i ->
-                newvirtualMachineList.add(i)
+            if(projectsvirtualmachinsList.value != null) {
+                for (projectVirtualmachine in projectsvirtualmachinsList.value!!) {
+                    if (projectVirtualmachine.project_id == projectId && projectVirtualmachine.vm_id == i.Id) {
+                        newvirtualMachineList.add(i)
+                    }
+                }
+            }
+
         }
         Timber.i("filterVirtualMachines:")
         Timber.i(newvirtualMachineList.toString())

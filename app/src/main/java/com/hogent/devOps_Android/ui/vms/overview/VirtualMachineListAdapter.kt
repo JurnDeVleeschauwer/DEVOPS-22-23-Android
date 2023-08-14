@@ -47,8 +47,8 @@ class VirtualMachineListAdapter(
         } else {
 
             val virtualmachine = virtualmachineList?.get(position - 1)
-            Timber.i("onBindViewHolder:")
-            Timber.i(virtualmachine.toString())
+            //Timber.i("onBindViewHolder:")
+            //Timber.i(virtualmachine.toString())
             //hier heb je het project en de holder, je kan er dingen op setten
             holder.textView1.text = virtualmachine?.Mode.toString()
             holder.textView2.text = virtualmachine?.Name
@@ -64,8 +64,8 @@ class VirtualMachineListAdapter(
     }
 
     override fun getItemCount(): Int {
-        Timber.i("getItemCount:")
-        Timber.i(virtualmachineList.toString())
+        //Timber.i("getItemCount:")
+        //Timber.i(virtualmachineList.toString())
         return virtualmachineList?.size!! + 1
     }
 }

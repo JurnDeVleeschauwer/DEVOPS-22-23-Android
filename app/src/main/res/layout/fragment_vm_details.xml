@@ -18,31 +18,18 @@
         android:layout_height="match_parent"
         >
 
-        <ImageView
-            android:id="@+id/back_vmList"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="15dp"
-
-            android:src="@drawable/arrow"
-            app:flow_horizontalBias="0.3"
-            app:layout_constraintEnd_toStartOf="@+id/DetailsVMName"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
 
         <TextView
             android:id="@+id/DetailsVMName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
             android:text='@{vmViewModel.vm.name}'
             android:textColor="@color/black"
             android:textSize="@dimen/titel_font_size"
+
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/back_vmList"
-            app:layout_constraintTop_toTopOf="@+id/back_vmList"
+            tools:layout_editor_absoluteX="120dp"
+            tools:layout_editor_absoluteY="16dp"
             tools:text="VMTestnaam" />
 
         <ImageView

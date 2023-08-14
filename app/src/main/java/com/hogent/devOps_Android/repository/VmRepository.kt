@@ -32,8 +32,11 @@ class VmRepository(private val database: DatabaseImp, customer_id: String) {
         it.asDomainModel()
     }
     val user: LiveData<NetworkNetworkUserContainer> = database.customerDao.get(customer_id).map { it.asDomainModel()}
+
+    val projectsvms: LiveData<List<ProjectVirtualMachineEntity>> = database.projectVirtualMachineDao.getAll()
     suspend fun refresh() {
         withContext(Dispatchers.IO){
+            database.projectVirtualMachineDao.delete()
             val projects = VmApi.retrofitService.GetIndexOfProjectByIdUser(UserId).await()
             projects.projects.asDatabaseModel().map { database.projectDao.insertAll(it) }
 
@@ -42,7 +45,38 @@ class VmRepository(private val database: DatabaseImp, customer_id: String) {
                 for(vm in projectDetail.projectsDetails.VirtualMachines){
                     var vmDetail = VmApi.retrofitService.GetIndexOfVmById(vm.Id).await()
                     database.virtualMachineDao.insertAll(vmDetail.vms.asDatabaseModel())
-                    database.projectVirtualMachineDao.insertAll(ProjectVirtualMachineEntity(project_id = project.Id, vm_id = vm.Id))
+
+
+
+
+                    var projectsVirtualmachineLsit = database.projectVirtualMachineDao.getAllList()
+                    Timber.i("projectsVirtualmachineLsit")
+                    Timber.i(projectsVirtualmachineLsit.toString())
+                    var add = true
+                   gere@for(projectVirtualmachine in projectsVirtualmachineLsit){
+                        Timber.i("project_id:")
+                        Timber.i(projectVirtualmachine.project_id.toString())
+                        Timber.i("vm_id:")
+                        Timber.i(projectVirtualmachine.vm_id.toString())
+                        Timber.i("project.Id:")
+                        Timber.i(project.Id.toString())
+                        Timber.i("vm.Id:")
+                        Timber.i(vm.Id.toString())
+                        if(projectVirtualmachine.project_id == project.Id && projectVirtualmachine.vm_id == vm.Id){
+                            add = false
+                            break@gere
+                        }
+
+                    }
+                    if (add) {
+                        Timber.i("projectVirtualMachineDao: InsertAll")
+                        database.projectVirtualMachineDao.insertAll(
+                            ProjectVirtualMachineEntity(
+                                project_id = project.Id,
+                                vm_id = vm.Id
+                            )
+                        )
+                    }
                 }
                 //database.projectDao.insertAll(projectDetail.projectsDetails.asDatabaseModelDetail())
             }
