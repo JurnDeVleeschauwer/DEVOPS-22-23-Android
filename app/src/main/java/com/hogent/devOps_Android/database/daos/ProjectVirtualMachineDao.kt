@@ -2,7 +2,6 @@ package com.hogent.devOps_Android.database.daos
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -24,5 +23,4 @@ interface ProjectVirtualMachineDao {
 
     @Query("DELETE from project_virtualmachine_table")
     fun delete()
-
 }

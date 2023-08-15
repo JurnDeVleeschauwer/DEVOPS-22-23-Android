@@ -7,7 +7,6 @@ import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 import com.auth0.android.result.Credentials
 
-
 object CredentialsManager {
     private val ACCESS_TOKEN = "access_token"
 
@@ -16,7 +15,6 @@ object CredentialsManager {
     var UserId = ""
 
     fun saveCredentials(context: Context, credentials: Credentials) {
-
         val masterKeyAlias: String = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
 
         val sp: SharedPreferences = EncryptedSharedPreferences.create(
@@ -31,7 +29,6 @@ object CredentialsManager {
         editor.putString(ACCESS_TOKEN, credentials.accessToken)
             .apply()
     }
-
 
     fun getAccessToken(context: Context): String? {
         val masterKeyAlias: String = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)

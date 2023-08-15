@@ -15,7 +15,7 @@ import org.json.JSONObject
 import timber.log.Timber
 
 @Entity(tableName = "user_table")
-data class UserEntitiy (
+data class UserEntitiy(
     @PrimaryKey()
     val UserId: String,
     val FirstName: String,
@@ -25,33 +25,31 @@ data class UserEntitiy (
     val user_metadata: User_metadata
 )
 
-
-fun UserEntitiy.asDomainModel() : NetworkNetworkUserContainer {
-    return NetworkNetworkUserContainer( NetworkUser(
+fun UserEntitiy.asDomainModel(): NetworkNetworkUserContainer {
+    return NetworkNetworkUserContainer(
+        NetworkUser(
             UserId = UserId,
-            FirstName = FirstName ,
+            FirstName = FirstName,
             Name = Name,
             Email = Email,
             Role = Role,
             user_metadata = NetworkUser_metadata(user_metadata.Bedrijf, user_metadata.Course, user_metadata.Intern)
+        )
     )
-        )
-
 }
 
-fun NetworkNetworkUserContainer.asDatabaseModel() : UserEntitiy{
+fun NetworkNetworkUserContainer.asDatabaseModel(): UserEntitiy {
     return UserEntitiy(
-            UserId = user.UserId,
-            FirstName = if(user.FirstName == null) "" else user.FirstName ,
-            Name = if(user.Name == null) "" else user.Name,
-            Email = user.Email,
-            Role = user.Role,
-            user_metadata = User_metadata(user.user_metadata.Bedrijf, user.user_metadata.Course, user.user_metadata.Intern)
-        )
-
+        UserId = user.UserId,
+        FirstName = if (user.FirstName == null) "" else user.FirstName,
+        Name = if (user.Name == null) "" else user.Name,
+        Email = user.Email,
+        Role = user.Role,
+        user_metadata = User_metadata(user.user_metadata.Bedrijf, user.user_metadata.Course, user.user_metadata.Intern)
+    )
 }
 
-enum class Role(val value: Int)  {
+enum class Role(val value: Int) {
     Klant(0),
     BeheerderZien(1),
     BeheerderBeheren(2),
@@ -109,26 +107,26 @@ class CourseEnumJsonAdapter : JsonAdapter<Course>() {
     }
 }
 
-
 data class User_metadata(
-    val Bedrijf:  String?,
+    val Bedrijf: String?,
     val Course: Course?,
-    val Intern:  Boolean
+    val Intern: Boolean
 )
 
-class User_metadataConverter{
+class User_metadataConverter {
     @TypeConverter
     fun fromUser_metadata(user_metadata: User_metadata): String {
         return JSONObject().apply {
             put("Bedrijf", user_metadata.Bedrijf)
             put("Course", user_metadata.Course)
             put("Intern", user_metadata.Intern)
-        }.toString();
+        }.toString()
     }
+
     @TypeConverter
-    fun toUser_metadata(json: String) : User_metadata{
+    fun toUser_metadata(json: String): User_metadata {
         val user_metadata = JSONObject(json)
         Timber.i(user_metadata.toString())
-        return User_metadata(if(!user_metadata.has("Bedrijf")) null else user_metadata.get("Bedrijf") as String,  if(!user_metadata.has("Course")) null else Course.valueOf(user_metadata.get("Course").toString()) as Course, user_metadata.get("Intern") as Boolean)
+        return User_metadata(if (!user_metadata.has("Bedrijf")) null else user_metadata.get("Bedrijf") as String, if (!user_metadata.has("Course")) null else Course.valueOf(user_metadata.get("Course").toString()) as Course, user_metadata.get("Intern") as Boolean)
     }
 }

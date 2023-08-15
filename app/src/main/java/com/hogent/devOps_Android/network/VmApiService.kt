@@ -2,7 +2,6 @@ package com.hogent.devOps_Android.network
 
 import com.hogent.devOps_Android.database.entities.BackupTypeEnumJsonAdapter
 import com.hogent.devOps_Android.database.entities.CourseEnumJsonAdapter
-import com.hogent.devOps_Android.database.entities.LocalDateJsonAdapter
 import com.hogent.devOps_Android.database.entities.OperatingSystemEnumJsonAdapter
 import com.hogent.devOps_Android.database.entities.RoleEnumJsonAdapter
 import com.hogent.devOps_Android.database.entities.VirtualMachineStatusEnumJsonAdapter
@@ -24,7 +23,6 @@ import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
 import javax.security.cert.CertificateException
 
-
 private const val BASE_URL = "https://10.0.2.2:44356/api/"
 
 private val moshi = Moshi.Builder()
@@ -34,7 +32,7 @@ private val moshi = Moshi.Builder()
     .add(OperatingSystemEnumJsonAdapter())
     .add(VirtualMachineStatusEnumJsonAdapter())
     .add(BackupTypeEnumJsonAdapter())
-    //.add(LocalDateJsonAdapter())
+    // .add(LocalDateJsonAdapter())
     .build()
 
 private val retrofit = Retrofit.Builder()
@@ -46,23 +44,23 @@ private val retrofit = Retrofit.Builder()
 interface VmApiService {
     @GET("project/User")
     fun GetIndexOfProjectByIdUser(@Query("UserId")customer_id: String):
-            Deferred<NetworkProjectenContainer>
+        Deferred<NetworkProjectenContainer>
 
     @GET("project/Detail")
-    fun GetIndexOfProjectById( @Query("ProjectenId") project_id: Long):
-            Deferred<NetworkProjectenDetailContainer>
+    fun GetIndexOfProjectById(@Query("ProjectenId") project_id: Long):
+        Deferred<NetworkProjectenDetailContainer>
 
     @GET("virtualmachine/{id}")
     fun GetIndexOfVmById(@Path("id")vm_id: Long):
-            Deferred<NetworkVMContainer>
+        Deferred<NetworkVMContainer>
 
     @GET("User/{id}")
-    fun GetIndexOfUserById( @Path("id") UserId: String):
-            Deferred<NetworkNetworkUserContainer>
+    fun GetIndexOfUserById(@Path("id") UserId: String):
+        Deferred<NetworkNetworkUserContainer>
 }
 
 object VmApi {
-    val retrofitService : VmApiService by lazy {
+    val retrofitService: VmApiService by lazy {
         retrofit.create(VmApiService::class.java)
     }
 }

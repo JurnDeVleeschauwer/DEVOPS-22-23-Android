@@ -4,37 +4,27 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.ui.NavigationUI
-import androidx.room.Database
 import com.hogent.devOps_Android.R
-import com.hogent.devOps_Android.database.DatabaseImp
 import com.hogent.devOps_Android.databinding.FragmentProfielBinding
 import com.hogent.devOps_Android.ui.login.CredentialsManager
 import com.hogent.devOps_Android.util.closeKeyboardOnTouch
 
+class CustomerProfileFragment : Fragment() {
 
-class CustomerProfileFragment: Fragment() {
-
-    override fun onCreateView( inflater: LayoutInflater,   container: ViewGroup?,   savedInstanceState: Bundle?): View? {
-        val binding: FragmentProfielBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_profiel, container, false);
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val binding: FragmentProfielBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_profiel, container, false)
         val application = requireNotNull(this.activity).application
 
+        val viewModelFactory = CustomerViewModelFactory(application, CredentialsManager.UserId)
 
-
-
-        val viewModelFactory = CustomerViewModelFactory(application, CredentialsManager.UserId);
-
-        val customerView = ViewModelProvider(this, viewModelFactory)[(CustomerViewModel::class.java)];
+        val customerView = ViewModelProvider(this, viewModelFactory)[(CustomerViewModel::class.java)]
 
         binding.customerViewModel = customerView
         binding.lifecycleOwner = this
         binding.root.closeKeyboardOnTouch()
-
 
         /*customerView.success.observe(viewLifecycleOwner, Observer{
             if(it){
@@ -48,7 +38,6 @@ class CustomerProfileFragment: Fragment() {
                 customerView.doneErrorToast()
             }
         })*/
-
 
         return binding.root
     }

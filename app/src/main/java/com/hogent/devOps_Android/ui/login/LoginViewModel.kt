@@ -1,12 +1,6 @@
 package com.hogent.devOps_Android.ui.login
 
-
 import android.app.Application
-import android.text.Editable
-import androidx.lifecycle.*
+import androidx.lifecycle.ViewModel
 
-class LoginViewModel(app: Application): ViewModel(){
-
-
-
-}
+class LoginViewModel(app: Application) : ViewModel()

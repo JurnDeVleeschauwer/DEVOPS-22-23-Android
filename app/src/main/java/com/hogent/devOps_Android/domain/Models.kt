@@ -10,25 +10,24 @@ import com.hogent.devOps_Android.database.entities.User_metadata
 import com.hogent.devOps_Android.database.entities.VirtualMachineStatus
 import java.time.LocalDate
 
-
 data class VirtualMachine(
-    var id : Long = 0L,
-    val name : String = "",
-    val connection : Connection,
-    val status : VirtualMachineStatus = VirtualMachineStatus.WAITING_APPROVEMENT,
+    var id: Long = 0L,
+    val name: String = "",
+    val connection: Connection,
+    val status: VirtualMachineStatus = VirtualMachineStatus.WAITING_APPROVEMENT,
     val operatingSystem: OperatingSystem = OperatingSystem.WINDOWS_10,
-    val hardware: HardWare = HardWare(0,0,0),
-    val mode : String = "",
-    val contractId : Long = 0L,
-    val backup : Backup,
+    val hardware: HardWare = HardWare(0, 0, 0),
+    val mode: String = "",
+    val contractId: Long = 0L,
+    val backup: Backup,
     val why: String = ""
 )
 
 data class Project(
-    var id : Long = 0L,
-    val name : String = "",
-    val userid : Long = 0L,
-    val vms : List<ProjectVirtualMachineEntity>
+    var id: Long = 0L,
+    val name: String = "",
+    val userid: Long = 0L,
+    val vms: List<ProjectVirtualMachineEntity>
 )
 
 data class User(
@@ -44,6 +43,5 @@ data class Contract(
     var id: Long = 0L,
     var vmid: Long = 0L,
     var startDate: LocalDate,
-    var endDate: LocalDate,
+    var endDate: LocalDate
 )
-

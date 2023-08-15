@@ -15,7 +15,6 @@ class UserRepository(private val database: DatabaseImp, vm_id: Long?) {
         it.asDomainModel()
     }
 
-
     suspend fun getvm(vm_id: Long) {
         withContext(Dispatchers.IO) {
             var vmDetail = VmApi.retrofitService.GetIndexOfVmById(vm_id).await()

@@ -15,9 +15,4 @@ interface CustomerDao {
 
     @Query("SELECT * FROM user_table WHERE UserId = :key")
     fun get(key: String): LiveData<UserEntitiy>
-
-
 }
-
-
-

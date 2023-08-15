@@ -1,16 +1,19 @@
 package com.hogent.devOps_Android.database.entities
-import androidx.room.*
-import com.hogent.devOps_Android.database.daos.ProjectVirtualMachineDao
+
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.hogent.devOps_Android.network.NetworkProject
 import com.hogent.devOps_Android.network.NetworkProjectDetail
 import com.hogent.devOps_Android.network.NetworkUserProject
 
-@Entity(tableName = "project_table"/*,
+@Entity(
+    tableName = "project_table"/*,
         foreignKeys = [androidx.room.ForeignKey(
         entity = UserEntitiy::class,
         childColumns = ["userid"],
         parentColumns = ["UserId"]
-)]*/)
+)]*/
+)
 data class ProjectEntitiy(
     @PrimaryKey
     var id: Long = 0L,
@@ -18,8 +21,7 @@ data class ProjectEntitiy(
     val userid: String = ""
 )
 
-
-fun List<ProjectEntitiy>.asDomainModel() : List<NetworkProject>{
+fun List<ProjectEntitiy>.asDomainModel(): List<NetworkProject> {
     return map {
         NetworkProject(
             Id = it.id,
@@ -29,7 +31,7 @@ fun List<ProjectEntitiy>.asDomainModel() : List<NetworkProject>{
     }
 }
 
-fun  List<NetworkProject>.asDatabaseModel() : List<ProjectEntitiy>{
+fun List<NetworkProject>.asDatabaseModel(): List<ProjectEntitiy> {
     return map {
         ProjectEntitiy(
             id = it.Id,
@@ -57,10 +59,9 @@ private fun ListProjectVirtualMachineEntitytoListNetworkVMDetail(listProjectVirt
     return newList
 }*/
 
-fun  NetworkProjectDetail.asDatabaseModelDetail() : ProjectEntitiy{
+fun NetworkProjectDetail.asDatabaseModelDetail(): ProjectEntitiy {
     return ProjectEntitiy(
-            id = Id,
-            name = Name,
-        )
-
+        id = Id,
+        name = Name
+    )
 }

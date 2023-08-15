@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hogent.devOps_Android.database.DatabaseImp
-import com.hogent.devOps_Android.database.daos.CustomerDao
 import com.hogent.devOps_Android.repository.VmRepository
 import kotlinx.coroutines.launch
 
@@ -12,7 +11,6 @@ class CustomerViewModel(app: Application, UserId: String) : ViewModel() {
 
     private val database = DatabaseImp.getInstance(app.applicationContext)
     private val vmRepository = VmRepository(database)
-
 
     init {
         viewModelScope.launch {

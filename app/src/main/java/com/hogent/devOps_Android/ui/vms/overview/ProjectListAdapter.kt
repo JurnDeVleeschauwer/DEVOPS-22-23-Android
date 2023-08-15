@@ -15,7 +15,6 @@ import com.hogent.devOps_Android.network.NetworkProject
 import com.hogent.devOps_Android.network.NetworkVMDetail
 import timber.log.Timber
 
-
 class ProjectListAdapter(
     private val projectList: List<NetworkProject>?,
     private val virtualmachineList: LiveData<List<NetworkVMDetail>>?,
@@ -27,22 +26,20 @@ class ProjectListAdapter(
     private lateinit var recyclerView: RecyclerView
     private lateinit var view: View
     private var newvirtualMachineList = mutableListOf<NetworkVMDetail>()
-    //hier ontvang je de view, die wordt gecached om te recyclen of opnieuw terug te zien
-    //ideaal dus, want als je de project wilt openklappen en sluiten dan weet hij dit
+    // hier ontvang je de view, die wordt gecached om te recyclen of opnieuw terug te zien
+    // ideaal dus, want als je de project wilt openklappen en sluiten dan weet hij dit
 
-    //wat je kan doen is: elke project in een container stoppen.  (een container is subklasse van view)
-    //en dan komt deze hier terecht, en kan je ook een nieuwe terugsturen met de volgende in de lijst
+    // wat je kan doen is: elke project in een container stoppen.  (een container is subklasse van view)
+    // en dan komt deze hier terecht, en kan je ook een nieuwe terugsturen met de volgende in de lijst
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        //cardview ( = container )  als voorbeeld maar kan je ook gebruiken
+        // cardview ( = container )  als voorbeeld maar kan je ook gebruiken
         val textView1: TextView = itemView.findViewById(R.id.textView1)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         view =
             LayoutInflater.from(parent.context).inflate(R.layout.project_container, parent, false)
-
-
 
         return ViewHolder(view)
     }
@@ -51,7 +48,7 @@ class ProjectListAdapter(
         val project = projectList?.get(position)
 
         recyclerView = view.findViewById(R.id.virtual_machine_recyclerview)
-        recyclerView.layoutManager = LinearLayoutManager(context);
+        recyclerView.layoutManager = LinearLayoutManager(context)
         Timber.i("ProjectAdapter:")
         Timber.i(virtualmachineList.toString())
         Timber.i(virtualmachineList?.value?.size.toString())
@@ -61,8 +58,7 @@ class ProjectListAdapter(
         recyclerView.adapter =
             VirtualMachineListAdapter(newvirtualMachineList, this.application)
 
-
-        //hier heb je het project en de holder, je kan er dingen op setten
+        // hier heb je het project en de holder, je kan er dingen op setten
         if (project != null) {
             holder.textView1.text = project.Name
         }
@@ -72,24 +68,21 @@ class ProjectListAdapter(
         return projectList?.size ?: 0
     }
 
-
     private fun filterVirtualMachines(projectId: Long) {
         newvirtualMachineList.clear()
         Timber.i("filterVirtualMachines Project ID:")
         Timber.i(projectId.toString())
         virtualmachineList?.value?.forEach { i ->
-            if(projectsvirtualmachinsList?.value != null) {
+            if (projectsvirtualmachinsList?.value != null) {
                 for (projectVirtualmachine in projectsvirtualmachinsList.value!!) {
                     if (projectVirtualmachine.project_id == projectId && projectVirtualmachine.vm_id == i.Id) {
                         newvirtualMachineList.add(i)
                     }
                 }
             }
-
         }
         Timber.i("filterVirtualMachines:")
         Timber.i(newvirtualMachineList.toString())
-
     }
 }
 

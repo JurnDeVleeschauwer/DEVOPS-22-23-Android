@@ -5,15 +5,21 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import androidx.sqlite.db.SupportSQLiteDatabase
 import com.hogent.devOps_Android.database.daos.ContractDao
 import com.hogent.devOps_Android.database.daos.CustomerDao
 import com.hogent.devOps_Android.database.daos.ProjectDao
 import com.hogent.devOps_Android.database.daos.ProjectVirtualMachineDao
 import com.hogent.devOps_Android.database.daos.VirtualMachineDao
-import com.hogent.devOps_Android.database.entities.*
-import com.hogent.devOps_Android.util.ioThread
-import java.time.LocalDate
+import com.hogent.devOps_Android.database.entities.BackupConverter
+import com.hogent.devOps_Android.database.entities.ConnectionConverter
+import com.hogent.devOps_Android.database.entities.ContractEntitiy
+import com.hogent.devOps_Android.database.entities.HardwareConverter
+import com.hogent.devOps_Android.database.entities.LocalDateConverter
+import com.hogent.devOps_Android.database.entities.ProjectEntitiy
+import com.hogent.devOps_Android.database.entities.ProjectVirtualMachineEntity
+import com.hogent.devOps_Android.database.entities.UserEntitiy
+import com.hogent.devOps_Android.database.entities.User_metadataConverter
+import com.hogent.devOps_Android.database.entities.VirtualMachineEntitiy
 
 @Database(entities = [VirtualMachineEntitiy::class, UserEntitiy::class, ContractEntitiy::class, ProjectEntitiy::class, ProjectVirtualMachineEntity::class ], version = 16, exportSchema = false)
 @TypeConverters(HardwareConverter::class, BackupConverter::class, ConnectionConverter::class, LocalDateConverter::class, User_metadataConverter::class /*OperatingSystemConverter::class*/)
@@ -22,7 +28,7 @@ abstract class DatabaseImp() : RoomDatabase() {
     abstract val projectVirtualMachineDao: ProjectVirtualMachineDao
     abstract val customerDao: CustomerDao
     abstract val virtualMachineDao: VirtualMachineDao
-    abstract val projectDao : ProjectDao
+    abstract val projectDao: ProjectDao
     abstract val contractDao: ContractDao
 
     companion object {
@@ -40,10 +46,10 @@ abstract class DatabaseImp() : RoomDatabase() {
                 DatabaseImp::class.java,
                 "android-devOps"
             )
-                //.addCallback(seedDatabase(context))
+                // .addCallback(seedDatabase(context))
                 .allowMainThreadQueries()
                 .fallbackToDestructiveMigration()
-                .build();
+                .build()
 
         /*private fun seedDatabase(context: Context): Callback {
             return object : Callback() {
@@ -284,4 +290,3 @@ abstract class DatabaseImp() : RoomDatabase() {
         }*/
     }
 }
-

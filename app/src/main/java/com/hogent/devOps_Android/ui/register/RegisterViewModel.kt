@@ -1,29 +1,13 @@
 package com.hogent.devOps_Android.ui.register
 
 import android.app.Application
-import android.provider.SyncStateContract.Helpers.insert
-import android.text.Editable
-import android.util.Log
-import android.widget.Toast
-import androidx.databinding.Bindable
-import androidx.databinding.BindingAdapter
 import androidx.databinding.Observable
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.hogent.devOps_Android.database.repositories.RegisterRepository
-import com.hogent.devOps_Android.util.Validators
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
-import timber.log.Timber
 
-class RegisterViewModel (private val repository : RegisterRepository ,application: Application) :
-AndroidViewModel(application), Observable {
-    //TODO naar viewmodel veranderen ???
+class RegisterViewModel(private val repository: RegisterRepository, application: Application) :
+    AndroidViewModel(application), Observable {
+    // TODO naar viewmodel veranderen ???
     /*
     val klant = MutableLiveData<Customer?>()
     private val viewModelJob = Job()
@@ -137,5 +121,4 @@ AndroidViewModel(application), Observable {
     override fun removeOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
         TODO("Not yet implemented")
     }
-
 }

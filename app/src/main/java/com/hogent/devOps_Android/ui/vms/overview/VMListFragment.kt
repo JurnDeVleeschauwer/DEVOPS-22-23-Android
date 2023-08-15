@@ -17,67 +17,66 @@ import com.hogent.devOps_Android.ui.login.CredentialsManager
 import com.hogent.devOps_Android.util.closeKeyboardOnTouch
 import timber.log.Timber
 
-
 class VMListFragment : Fragment() {
 
     private lateinit var viewModel: VMListViewModel
-    private lateinit var application : Application
+    private lateinit var application: Application
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val binding: FragmentVmlistBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_vmlist, container, false);
+            DataBindingUtil.inflate(inflater, R.layout.fragment_vmlist, container, false)
         application = requireNotNull(this.activity).application
 
+        val viewModelFactory = VMListViewModelFactory(application, CredentialsManager.UserId)
 
-        val viewModelFactory = VMListViewModelFactory(application, CredentialsManager.UserId);
-
-        viewModel = ViewModelProvider(this, viewModelFactory)[(VMListViewModel::class.java)];
+        viewModel = ViewModelProvider(this, viewModelFactory)[(VMListViewModel::class.java)]
 
         binding.overviewViewModel = viewModel
         binding.lifecycleOwner = this
         binding.root.closeKeyboardOnTouch()
 
         val recyclerView: RecyclerView = binding.root.findViewById(R.id.project_recyclerview)
-        recyclerView.layoutManager = LinearLayoutManager(this.context);
+        recyclerView.layoutManager = LinearLayoutManager(this.context)
 
         Timber.i("VMListFragment:")
         Timber.i(viewModel.projects.value.toString()/*.virtualmachine.value.toString()*/)
         Timber.i(viewModel.vms.value.toString())
 
-        viewModel.projects.observe(viewLifecycleOwner, Observer {
-            recyclerView.adapter = ProjectListAdapter(it, viewModel.vms, viewModel.projectsvms ,this.context, this.application);
+        viewModel.projects.observe(
+            viewLifecycleOwner,
+            Observer {
+                recyclerView.adapter = ProjectListAdapter(it, viewModel.vms, viewModel.projectsvms, this.context, this.application)
+            }
+        )
+        viewModel.vms.observe(
+            viewLifecycleOwner,
+            Observer {
+                recyclerView.adapter = ProjectListAdapter(viewModel.projects.value, viewModel.vms, viewModel.projectsvms, this.context, this.application)
+            }
+        )
 
-        })
-        viewModel.vms.observe(viewLifecycleOwner, Observer {
-            recyclerView.adapter = ProjectListAdapter(viewModel.projects.value, viewModel.vms, viewModel.projectsvms,  this.context, this.application);
-
-        })
-
-        viewModel.projectsvms.observe(viewLifecycleOwner, Observer {
-            recyclerView.adapter = ProjectListAdapter(viewModel.projects.value, viewModel.vms, viewModel.projectsvms,  this.context, this.application);
-
-        })
+        viewModel.projectsvms.observe(
+            viewLifecycleOwner,
+            Observer {
+                recyclerView.adapter = ProjectListAdapter(viewModel.projects.value, viewModel.vms, viewModel.projectsvms, this.context, this.application)
+            }
+        )
         return binding.root
     }
 
     // AuthenticationManager.getInstance(application).klant.value!!.id
 
-
-
-
-
-//kunt je deze klasse nie in u xml zetten? lijkt zeer onoverzichtelijk en moeilijk
-//om hier iets bij te kunnen visualiseren / aanpassingen aandoen in de toekomst.
-//kijk naar mijn klantprofiel voor een voorbeeld mss, je kunt daar met invisible werken.
+// kunt je deze klasse nie in u xml zetten? lijkt zeer onoverzichtelijk en moeilijk
+// om hier iets bij te kunnen visualiseren / aanpassingen aandoen in de toekomst.
+// kijk naar mijn klantprofiel voor een voorbeeld mss, je kunt daar met invisible werken.
 
     /*private fun setupView() {
         if (viewModel.projecten != null) {
@@ -159,6 +158,4 @@ class VMListFragment : Fragment() {
 
 
     }*/
-
-
 }

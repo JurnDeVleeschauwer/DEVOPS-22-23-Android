@@ -1,24 +1,6 @@
 package com.hogent.devOps_Android.ui.register
 
-import android.os.Bundle
-import android.text.Layout.Directions
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.core.os.bundleOf
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.NavHostFragment
-import com.hogent.devOps_Android.R
-import com.hogent.devOps_Android.database.DatabaseImp
-import com.hogent.devOps_Android.database.repositories.RegisterRepository
-import com.hogent.devOps_Android.databinding.FragmentRegisterBinding
-import com.hogent.devOps_Android.ui.login.LoginFragment
-import com.hogent.devOps_Android.util.closeKeyboardOnTouch
 
 class RegisterFragment : Fragment() {
 

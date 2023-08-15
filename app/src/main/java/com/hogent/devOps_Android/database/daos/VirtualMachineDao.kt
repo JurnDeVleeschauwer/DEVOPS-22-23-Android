@@ -5,7 +5,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Update
 import com.hogent.devOps_Android.database.entities.VirtualMachineEntitiy
 
 @Dao
@@ -22,8 +21,4 @@ interface VirtualMachineDao {
 
     @Query("SELECT * FROM virtualmachine_table")
     fun getAllList(): List<VirtualMachineEntitiy>
-
-
 }
-
-

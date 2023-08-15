@@ -1,16 +1,12 @@
 package com.hogent.devOps_Android.network
 
-import com.hogent.devOps_Android.database.entities.Backup
 import com.hogent.devOps_Android.database.entities.BackupType
 import com.hogent.devOps_Android.database.entities.Course
-import com.squareup.moshi.JsonClass
-import com.hogent.devOps_Android.database.entities.HardWare
-import com.hogent.devOps_Android.database.entities.VirtualMachineStatus
 import com.hogent.devOps_Android.database.entities.OperatingSystem
-import com.hogent.devOps_Android.database.entities.ProjectVirtualMachineEntity
 import com.hogent.devOps_Android.database.entities.Role
+import com.hogent.devOps_Android.database.entities.VirtualMachineStatus
 import com.squareup.moshi.Json
-import java.time.LocalDate
+import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class NetworkVMContainer(@Json(name = "virtualMachine")val vms: NetworkVMDetail)
@@ -22,25 +18,24 @@ data class NetworkVMDetail(
     @Json(name = "mode") val Mode: VirtualMachineStatus,
     @Json(name = "hardware") val Hardware: NetworkHardware,
     @Json(name = "operatingSystem") val OperatingSystem: OperatingSystem,
-    //@Json(name = "contract")val ContractId: Long,
+    // @Json(name = "contract")val ContractId: Long,
     @Json(name = "backUp") val BackUp: NetworkBackup,
-    //public FysiekeServer? FysiekeServer { get; set; }
-    @Json(name = "why") val Why: String)
+    // public FysiekeServer? FysiekeServer { get; set; }
+    @Json(name = "why") val Why: String
+)
 
 @JsonClass(generateAdapter = true)
 data class NetworkHardware(
     @Json(name = "memory")val Memory: Int,
     @Json(name = "storage")val Storage: Int,
-    @Json(name = "amount_vCPU")val Amount_vCPU: Int,
+    @Json(name = "amount_vCPU")val Amount_vCPU: Int
 )
 
 @JsonClass(generateAdapter = true)
 data class NetworkBackup(
     @Json(name = "type")val type: BackupType,
-    @Json(name = "lastBackup")val date: String, //Rember to change to LocalDate when used later
+    @Json(name = "lastBackup")val date: String // Rember to change to LocalDate when used later
 )
-
-
 
 @JsonClass(generateAdapter = true)
 data class NetworkProjectenContainer(@Json(name = "projecten")val projects: List<NetworkProject>)
@@ -58,19 +53,18 @@ data class NetworkUserProject(
     @Json(name = "userId")val UserId: String
 )
 
-
 @JsonClass(generateAdapter = true)
-data class NetworkProjectenDetailContainer( @Json(name = "project")val projectsDetails: NetworkProjectDetail)
+data class NetworkProjectenDetailContainer(@Json(name = "project")val projectsDetails: NetworkProjectDetail)
 
 @JsonClass(generateAdapter = true)
 data class NetworkProjectDetail(
     @Json(name = "id")val Id: Long,
     @Json(name = "name")val Name: String,
     @Json(name = "virtualMachines")val VirtualMachines: List<NetworkVMDetail>
-    )
+)
+
 @JsonClass(generateAdapter = true)
 data class NetworkVMListContainer(@Json(name = "virtualMachines")val vms: List<NetworkVMDetail>)
-
 
 @JsonClass(generateAdapter = true)
 data class NetworkNetworkUserContainer(@Json(name = "user")val user: NetworkUser)
@@ -89,6 +83,6 @@ data class NetworkUser(
 data class NetworkUser_metadata(
     @Json(name = "bedrijf") val Bedrijf: String?,
     @Json(name = "course") val Course: Course?,
-    @Json(name = "intern") val Intern: Boolean,
+    @Json(name = "intern") val Intern: Boolean
 
-    )
+)

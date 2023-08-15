@@ -1,31 +1,16 @@
 package com.hogent.devOps_Android.ui.vms.overview
 
 import android.app.Application
-import android.net.Network
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hogent.devOps_Android.database.DatabaseImp
-import com.hogent.devOps_Android.database.entities.*
-import com.hogent.devOps_Android.network.VmApi
 import com.hogent.devOps_Android.repository.VmRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import timber.log.Timber
-
 
 class VMListViewModel(app: Application, customer_id: String) : ViewModel() {
 
-
-
     private val database = DatabaseImp.getInstance(app.applicationContext)
     private val vmRepository = VmRepository(database)
-
 
     init {
         viewModelScope.launch {
@@ -36,8 +21,6 @@ class VMListViewModel(app: Application, customer_id: String) : ViewModel() {
     val projects = vmRepository.projects
     val vms = vmRepository.vms
     val projectsvms = vmRepository.projectsvms
-
-
 
     /*private val db_projecten = db.projectDao;
     private val db_vms = db.virtualMachineDao;
@@ -80,8 +63,6 @@ class VMListViewModel(app: Application, customer_id: String) : ViewModel() {
         Timber.i(_virtualmachine.value.toString())
     }*/
 
-
-
     /*private fun getProjectListFromApiByUserId(){
         coroutineScope.launch {
             var getPropertiesDeferred = VmApi.retrofitService.getProperties()
@@ -93,7 +74,4 @@ class VMListViewModel(app: Application, customer_id: String) : ViewModel() {
             }
         }
     }*/
-
-
 }
-
