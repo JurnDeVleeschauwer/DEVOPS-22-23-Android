@@ -4,11 +4,11 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
-class VMListViewModelFactory(var application: Application, val customer_id: String) : ViewModelProvider.Factory {
+class VMListViewModelFactory(var application: Application) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(VMListViewModel::class.java)) {
-            return VMListViewModel(application, customer_id) as T
+            return VMListViewModel(application) as T
         }
         return super.create(modelClass)
     }

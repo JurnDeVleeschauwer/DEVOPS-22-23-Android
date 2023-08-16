@@ -35,7 +35,7 @@ class VMListFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.fragment_vmlist, container, false)
         application = requireNotNull(this.activity).application
 
-        val viewModelFactory = VMListViewModelFactory(application, CredentialsManager.UserId)
+        val viewModelFactory = VMListViewModelFactory(application)
 
         viewModel = ViewModelProvider(this, viewModelFactory)[(VMListViewModel::class.java)]
 
