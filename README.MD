@@ -9,20 +9,15 @@
 ####  Running the application:
 - build en run de app op een emulator met API 30+
 
-#### Problems?
-- File -> Invalidate caches
-
 #### Logging in:
 * User:  
-  • Username: john.doe@hotmail.com <br>
-  • Password: Password#69
-
+  • Username: jack.verhaegenn@gmail.com
+  • Password: Jackjack2341
 
 ## Functionaliteiten
 - inloggen
-- registreren
-- klant profiel + dynamisch wijzigen hiervan
+- klant profiel
 - lijst van projecten met daarin de VM's
-- virtual machine aanvragen
+- virtual machine aanvragen visual
 
 
