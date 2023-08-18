@@ -45,6 +45,26 @@ android {
     dataBinding{
         enabled = true
     }
+
+    testOptions.unitTests {
+        includeAndroidResources = true
+    }
+    packagingOptions {
+        exclude("licenses/javolution.license.TXT")
+        exclude("org/apache/maven/project/pom-4.0.0.xml")
+        exclude("org/cyberneko/html/res/HTMLlat1.properties")
+        exclude("licenses/extreme.indiana.edu.license.TXT")
+        exclude("org/cyberneko/html/res/ErrorMessages_ja.properties")
+        exclude("licenses/thoughtworks.TXT")
+        exclude("org/cyberneko/html/res/ErrorMessages_ja.txt")
+        exclude("META-INF/plexus/components.xml")
+        exclude("org/cyberneko/html/res/ErrorMessages.properties")
+        exclude("META-INF/DEPENDENCIES")
+        exclude("org/codehaus/plexus/plexus-bootstrap.xml")
+        exclude("org/cyberneko/html/res/HTMLspecial.properties")
+        exclude("org/cyberneko/html/res/XMLbuiltin.properties")
+        exclude("org/cyberneko/html/res/HTMLsymbol.properties")
+    }
 }
 
 dependencies {
@@ -79,39 +99,53 @@ dependencies {
 
     implementation "androidx.arch.core:core-testing:2.2.0"
 
-
-
-
-
-    implementation 'com.google.android.material:material:1.6.1'
     implementation "com.google.android.material:material:1.7.0"
-
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.7"
 
     implementation "com.squareup.moshi:moshi:$version_moshi"
     implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
 
+    implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
+    implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
+
     implementation 'com.jakewharton.timber:timber:5.0.1'
 
     implementation 'com.auth0.android:auth0:2.+'
-
-    implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
-    implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version_kotlin_coroutines"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version_kotlin_coroutines"
 
     implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$version_retrofit_coroutines_adapter"
 
+    androidTestImplementation 'junit:junit:4.13.2'
+
+    androidTestImplementation "androidx.test.ext:junit-ktx:1.1.5"
+    androidTestImplementation "androidx.test:core-ktx:1.5.0"
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.5.1'
+    androidTestImplementation 'androidx.test:runner:1.5.2'
+    androidTestImplementation 'androidx.test:rules:1.5.0'
+
+    androidTestImplementation 'androidx.fragment:fragment-testing:1.6.1'
+
+    androidTestImplementation "org.robolectric:robolectric:4.10.3"
+
+    androidTestImplementation 'com.google.truth:truth:1.1.5'
+
+
     testImplementation 'junit:junit:4.13.2'
 
     testImplementation "androidx.test.ext:junit-ktx:1.1.5"
     testImplementation "androidx.test:core-ktx:1.5.0"
-    testImplementation "org.robolectric:robolectric:4.2.1"
+    testImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    testImplementation 'androidx.test.espresso:espresso-intents:3.5.1'
+    testImplementation 'androidx.test:runner:1.5.2'
+    testImplementation 'androidx.test:rules:1.5.0'
 
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    testImplementation 'androidx.fragment:fragment-testing:1.6.1'
+
+    testImplementation "org.robolectric:robolectric:4.10.3"
+
+    testImplementation 'com.google.truth:truth:1.1.5'
 
 
 }

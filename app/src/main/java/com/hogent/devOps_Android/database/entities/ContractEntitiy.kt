@@ -11,13 +11,13 @@ import java.time.format.DateTimeFormatter
 
 @Entity(
     tableName = "contract_table",
-    foreignKeys = [
+    /*foreignKeys = [
         androidx.room.ForeignKey(
             entity = VirtualMachineEntitiy::class,
             childColumns = ["vmid"],
             parentColumns = ["id"]
         )
-    ]
+    ]*/
 )
 data class ContractEntitiy(
     @PrimaryKey

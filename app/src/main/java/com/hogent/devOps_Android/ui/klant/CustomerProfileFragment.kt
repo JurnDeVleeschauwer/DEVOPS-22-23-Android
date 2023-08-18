@@ -18,7 +18,7 @@ class CustomerProfileFragment : Fragment() {
         val binding: FragmentProfielBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_profiel, container, false)
         val application = requireNotNull(this.activity).application
 
-        val viewModelFactory = CustomerViewModelFactory(application, CredentialsManager.UserId)
+        val viewModelFactory = CustomerViewModelFactory(application)
 
         val customerView = ViewModelProvider(this, viewModelFactory)[(CustomerViewModel::class.java)]
 

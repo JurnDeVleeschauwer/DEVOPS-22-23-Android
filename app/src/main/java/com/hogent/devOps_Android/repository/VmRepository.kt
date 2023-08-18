@@ -18,7 +18,7 @@ import timber.log.Timber
 class VmRepository(private val database: DatabaseImp) {
 
     var UserId: String = CredentialsManager.UserId
-    // if(customer_id != null) customer_id as String else //TODO
+
 
     val projects: LiveData<List<NetworkProject>> =
         database.projectDao.getByCustomerId(UserId)!!.map {

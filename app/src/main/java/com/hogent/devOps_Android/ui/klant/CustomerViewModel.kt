@@ -7,7 +7,7 @@ import com.hogent.devOps_Android.database.DatabaseImp
 import com.hogent.devOps_Android.repository.VmRepository
 import kotlinx.coroutines.launch
 
-class CustomerViewModel(app: Application, UserId: String) : ViewModel() {
+class CustomerViewModel(app: Application) : ViewModel() {
 
     private val database = DatabaseImp.getInstance(app.applicationContext)
     private val vmRepository = VmRepository(database)
