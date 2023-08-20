@@ -31,16 +31,24 @@ object CredentialsManager {
     }
 
     fun getAccessToken(context: Context): String? {
-        val masterKeyAlias: String = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
+        try {
 
-        val sp: SharedPreferences = EncryptedSharedPreferences.create(
-            "secret_shared_prefs",
-            masterKeyAlias,
-            context,
-            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-        )
 
-        return sp.getString(ACCESS_TOKEN, null)
+            val masterKeyAlias: String = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
+
+            val sp: SharedPreferences = EncryptedSharedPreferences.create(
+                "secret_shared_prefs",
+                masterKeyAlias,
+                context,
+                EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+            )
+
+
+            return sp.getString(ACCESS_TOKEN, null)
+        }
+        catch (e: Exception ){
+            return null
+        }
     }
 }
