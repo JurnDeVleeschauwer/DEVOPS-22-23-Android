@@ -127,7 +127,7 @@ dependencies {
 
     androidTestImplementation 'androidx.fragment:fragment-testing:1.6.1'
 
-    androidTestImplementation "org.robolectric:robolectric:4.10.3"
+
 
     androidTestImplementation 'com.google.truth:truth:1.1.5'
 
