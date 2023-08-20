@@ -1,4 +1,4 @@
-package com.hogent.devOps_Android.screens
+package com.hogent.devOps_Android.screens.profiel
 
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
